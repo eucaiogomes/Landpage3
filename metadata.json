@@ -1,0 +1,6 @@
+{
+  "name": "Juris8 Trabalhista",
+  "description": "IA jurídica especializada no contencioso trabalhista empresarial. Triagem inteligente de e-mails, geração de defesas e análise preditiva de riscos.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

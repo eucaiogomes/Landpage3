@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-juris-50: #F4EEFF;
+  --color-juris-100: #E6D9FF;
+  --color-juris-200: #CFB4FF;
+  --color-juris-300: #B388FB;
+  --color-juris-400: #9A63F0;
+  --color-juris-500: #7C3AED;
+  --color-juris-600: #6324C9;
+  --color-juris-700: #4C1A9E;
+  --color-juris-800: #361074;
+  --color-juris-900: #200A4D;
+  --color-juris-950: #130530;
+
+  --color-ink-50: #F6F4FB;
+  --color-ink-100: #ECE9F5;
+  --color-ink-200: #D5D1E6;
+  --color-ink-300: #ADA7C7;
+  --color-ink-400: #807AA0;
+  --color-ink-500: #5B557A;
+  --color-ink-600: #3F3A5C;
+  --color-ink-700: #2A2645;
+  --color-ink-800: #1A1730;
+  --color-ink-900: #110E22;
+  --color-ink-950: #07050F;
+
+  --color-ok: #4ADE80;
+  --color-warn: #F5B454;
+  --color-bad: #FB7185;
+  --color-info: #7DD3FC;
+
+  --font-sans: "Geist", system-ui, -apple-system, sans-serif;
+  --font-family-serif: "Instrument Serif", Georgia, serif;
+  --font-mono: "Geist Mono", SFMono-Regular, monospace;
+}
+
+/* Custom backgrounds and noise effects */
+body {
+  background-color: #07050F; /* ink-950 */
+  color: #EDEAF7;
+  overflow-x: hidden;
+  font-family: "Geist", sans-serif;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(900px 600px at 82% -8%, rgba(124, 58, 237, 0.085), transparent 64%),
+    radial-gradient(700px 500px at -8% 35%, rgba(76, 26, 158, 0.055), transparent 70%),
+    radial-gradient(800px 800px at 50% 110%, rgba(183, 136, 255, 0.028), transparent 74%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.014) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.014) 1px, transparent 1px);
+  background-size: 72px 72px;
+  background-position: -1px -1px;
+  pointer-events: none;
+  z-index: 0;
+  mask-image: radial-gradient(ellipse at 50% 30%, black 30%, transparent 78%);
+  -webkit-mask-image: radial-gradient(ellipse at 50% 30%, black 30%, transparent 78%);
+}
