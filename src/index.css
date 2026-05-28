@@ -36,6 +36,21 @@
   --font-mono: "Geist Mono", SFMono-Regular, monospace;
 }
 
+/* Custom Webkit scrollbar for columns */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(100, 116, 139, 0.2);
+  border-radius: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 116, 139, 0.4);
+}
+
 /* Custom backgrounds and noise effects */
 body {
   background-color: #07050F; /* ink-950 */

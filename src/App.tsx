@@ -4,58 +4,66 @@ import {
   Mail, MessageSquare, Scale, Check, X, Menu, ArrowRight, CornerDownRight, 
   Sparkles, Clock, Database, AlertTriangle, Archive, Play, CheckCircle2, 
   Plus, RefreshCw, Sliders, Shield, Award, Zap, BookOpen, Lock, ShieldCheck, HelpCircle,
-  Users, MessageCircle, Landmark, FileText, Inbox
+  Users, MessageCircle, Landmark, FileText, Inbox, Bell
 } from 'lucide-react';
 
 // Custom simulated cases for the Interactive Playground
 const INITIAL_INCOMING = [
   {
     id: 'msg-1',
-    channelName: 'WhatsApp',
-    channel: 'whatsapp',
-    subtitle: 'Cliente',
-    text: '"Bom dia, doutor(a). Tenho uma atualização..."',
-    time: '09:01',
-    category: 'Cliente urgente',
-    tagClass: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20',
-    actionTitle: 'Status enviado ao cliente',
-    actionDesc: 'Explicação amigável em linguagem simples sobre a última etapa jurídica.',
+    from: 'De: joao.silva@gmail.com',
+    text: 'Boa tarde, gostaria de saber sobre honorários para processo trabalhista...',
+    fromName: 'João Silva - E-mail',
+    logo: '/logogmail.png',
+    conf: 'conf. 97%',
+    category: 'Lead novo',
+    tagClass: 'bg-blue-500/10 text-blue-300 border-blue-500/30',
+    iconName: 'user',
+    actionTitle: 'Card criado no CRM',
+    actionDesc: '+ mensagem de qualificação enviada',
+    actionClass: 'bg-[#EFF6FF] border-[#BFDBFE]'
   },
   {
     id: 'msg-2',
-    channelName: 'E-mail',
-    channel: 'email',
-    subtitle: 'Novo e-mail recebido',
-    text: '"Encaminha petição" para análise.',
-    time: '09:01',
-    category: 'Análise de Peça',
-    tagClass: 'bg-blue-500/10 text-blue-400 border-blue-500/20',
-    actionTitle: 'Card criado no CRM',
-    actionDesc: '+ Primeira revisão da petição foi gerada para aprovação.',
+    from: 'De: tribunal.sp@tjsp.gov.br',
+    text: '⚠ INTIMAÇÃO — Prazo 5 dias úteis - Proc. 0012345-67',
+    fromName: 'TJSP - Tribunal',
+    logo: '/logogmail.png',
+    conf: 'vence em 5 dias',
+    category: 'Prazo crítico',
+    tagClass: 'bg-red-500/10 text-red-300 border-red-500/30',
+    iconName: 'bell',
+    actionTitle: 'Advogado notificado',
+    actionDesc: '+ 1ª versão da resposta gerada',
+    actionClass: 'bg-[#FEF2F2] border-[#FECACA]'
   },
   {
     id: 'msg-3',
-    channelName: 'Publicação',
-    channel: 'publicacao',
-    subtitle: 'Diário da Justiça',
-    text: '"Intimação publicada" no processo 1001234...',
-    time: '09:01',
-    category: 'Prazo crítico',
-    tagClass: 'bg-purple-500/10 text-purple-400 border-purple-500/20',
-    actionTitle: 'Advogado notificado',
-    actionDesc: '+ Rascunho inicial de manifestação e andamento gerado automaticamente.',
+    from: 'De: newsletter@legalnews.com',
+    text: 'Notícias jurídicas da semana - Edição 142',
+    fromName: 'LegalNews - Newsletter',
+    logo: '/logogmail.png',
+    conf: 'arquivado',
+    category: 'Spam/newsletter',
+    tagClass: 'bg-gray-500/10 text-gray-300 border-gray-500/30',
+    iconName: 'archive',
+    actionTitle: 'Arquivado automaticamente',
+    actionDesc: 'sem ação necessária',
+    actionClass: 'bg-[#F8FAFC] border-[#E2E8F0]'
   },
   {
     id: 'msg-4',
-    channelName: 'Documento',
-    channel: 'documento',
-    subtitle: 'Contrato.pdf',
-    text: '"Novo documento adicionado ao caso."',
-    time: '09:01',
-    category: 'Triagem Documental',
-    tagClass: 'bg-red-500/10 text-red-400 border-red-500/20',
-    actionTitle: 'Documento indexado',
-    actionDesc: 'Principais cláusulas e riscos extraídos e salvos no dossiê do processo.',
+    from: 'WhatsApp - +55 11 9XXXX-XXXX',
+    text: 'Olá, meu processo teve alguma movimentação?',
+    fromName: 'Cliente - WhatsApp',
+    logo: '/logowhatsap.png',
+    conf: 'andamento processo',
+    category: 'Cliente urgente',
+    tagClass: 'bg-green-500/10 text-green-300 border-green-500/30',
+    iconName: 'message',
+    actionTitle: 'Status enviado ao cliente',
+    actionDesc: 'linguagem acessível + proc. atualizado',
+    actionClass: 'bg-[#F0FDF4] border-[#BBF7D0]'
   }
 ];
 
@@ -64,10 +72,7 @@ export default function App() {
   const [demoSubmitSuccess, setDemoSubmitSuccess] = useState(false);
   
   // Custom interactive playground state
-  const [incomingMsgs, setIncomingMsgs] = useState(INITIAL_INCOMING);
-  const [customInput, setCustomInput] = useState('');
-  const [isClassifying, setIsClassifying] = useState(false);
-  const [successAnimation, setSuccessAnimation] = useState(false);
+  const [incomingMsgs] = useState(INITIAL_INCOMING);
 
   // Form registration
   const [form, setForm] = useState({
@@ -88,70 +93,6 @@ export default function App() {
     if (form.email && form.name) {
       setDemoSubmitSuccess(true);
     }
-  };
-
-  // Rule-based classification on client-side for playground
-  const handleCustomSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!customInput.trim()) return;
-
-    setIsClassifying(true);
-
-    const inputLower = customInput.toLowerCase();
-    let category = 'Triagem Geral';
-    let tagClass = 'bg-slate-500/10 text-slate-400 border-slate-500/20';
-    let actionTitle = 'Arquivado automaticamente';
-    let actionDesc = 'Nenhuma ação imediata necessária para este teor.';
-    let channelName = 'Sistema interno';
-    let channel = 'sistema';
-    let subtitle = 'Protocolo atualizado';
-
-    if (inputLower.includes('prazo') || inputLower.includes('intimação') || inputLower.includes('citação') || inputLower.includes('recurso') || inputLower.includes('audiência') || inputLower.includes('tribunal') || inputLower.includes('urgente')) {
-      category = 'Prazo crítico';
-      tagClass = 'bg-purple-500/10 text-purple-400 border-purple-500/20';
-      actionTitle = 'Advogado notificado';
-      actionDesc = '+ Rascunho inicial de manifestação e andamento gerado automaticamente.';
-      channelName = 'Publicação';
-      channel = 'publicacao';
-      subtitle = 'Diário da Justiça';
-    } else if (inputLower.includes('processo') || inputLower.includes('andamento') || inputLower.includes('como tá') || inputLower.includes('novidade') || inputLower.includes('andou') || inputLower.includes('status')) {
-      category = 'Cliente — andamento';
-      tagClass = 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20';
-      actionTitle = 'Status enviado ao cliente';
-      actionDesc = 'Explicação amigável em linguagem simples sobre a última etapa jurídica.';
-      channelName = 'WhatsApp';
-      channel = 'whatsapp';
-      subtitle = 'Cliente';
-    } else if (inputLower.includes('gostaria de saber') || inputLower.includes('orçamento') || inputLower.includes('quanto custa') || inputLower.includes('ajuda') || inputLower.includes('honorários') || inputLower.includes('consulta') || inputLower.includes('processar') || inputLower.includes('entrar com')) {
-      category = 'Lead novo';
-      tagClass = 'bg-blue-500/10 text-blue-400 border-blue-500/20';
-      actionTitle = 'Card criado no CRM';
-      actionDesc = '+ Envio automático de perguntas de triagem/qualificação.';
-      channelName = 'E-mail';
-      channel = 'email';
-      subtitle = 'Novo lead';
-    }
-
-    setTimeout(() => {
-      const newMsg = {
-        id: `custom-${Date.now()}`,
-        channelName,
-        channel,
-        subtitle,
-        text: `"${customInput}"`,
-        time: new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}),
-        category,
-        tagClass,
-        actionTitle,
-        actionDesc,
-      };
-
-      setIncomingMsgs(prev => [newMsg, ...prev.slice(0, 3)]);
-      setCustomInput('');
-      setIsClassifying(false);
-      setSuccessAnimation(true);
-      setTimeout(() => setSuccessAnimation(false), 2000);
-    }, 1200);
   };
 
   return (
@@ -293,180 +234,158 @@ export default function App() {
             </div>
           </div>
 
-          {/* CINEMATIC INTERACTIVE DEMO */}
-          <div className="relative w-full max-w-6xl mx-auto h-[650px] md:h-[550px] bg-[#07050A] rounded-[2rem] border border-white/10 overflow-hidden shadow-[0_0_100px_-20px_rgba(99,102,241,0.2)] flex flex-col mt-12 text-left">
-            
-            {/* Ambient Cinematic Glows */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-juris-600/10 blur-[120px] rounded-full pointer-events-none z-0"></div>
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-blue-500/10 blur-[80px] rounded-full pointer-events-none z-0"></div>
+          {/* INTERACTIVE DEMO - IN MACBOOK MOCKUP */}
+          <div className="relative w-full max-w-[1000px] mx-auto mt-16 px-4 sm:px-6">
+            <div className="relative mx-auto border-gray-800 dark:border-gray-800 bg-gray-800 border-[8px] border-b-0 rounded-t-[2xl] h-[550px] shadow-2xl overflow-hidden">
+              <div className="w-full h-full bg-[#1e1e1e] relative flex flex-col font-sans">
+                
+                {/* Macbook Camera Notch */}
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-4 bg-gray-800 rounded-b-xl z-50 flex items-center justify-center">
+                   <div className="w-1.5 h-1.5 rounded-full bg-white/20"></div>
+                </div>
 
-            {/* Subtle grid background */}
-            <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_10%,transparent_100%)] pointer-events-none z-0"></div>
+                {/* Window Header */}
+                <div className="h-10 border-b border-gray-700/50 flex items-center justify-between px-4 bg-[#252526]">
+                  <div className="flex items-center gap-2">
+                    <div className="flex gap-1.5">
+                      <div className="w-3 h-3 rounded-full bg-[#ff5f56]"></div>
+                      <div className="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
+                      <div className="w-3 h-3 rounded-full bg-[#27c93f]"></div>
+                    </div>
+                    <span className="ml-4 text-[13px] text-gray-300 font-medium">Inbox do escritório — ao vivo</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.8)]"></div>
+                    <span className="text-[11px] font-bold text-gray-300">IA ativa</span>
+                  </div>
+                </div>
 
-            {/* Custom Input Bar (Floating at top) */}
-            <div className="absolute top-6 left-1/2 -translate-x-1/2 w-[90%] md:w-[60%] max-w-2xl z-30 pointer-events-auto">
-              <form onSubmit={handleCustomSubmit} className="relative group">
-                 <div className="absolute -inset-1 bg-gradient-to-r from-juris-500/30 to-blue-500/30 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-500"></div>
-                 <div className="relative flex items-center bg-slate-950/80 backdrop-blur-xl border border-white/10 rounded-xl p-2 shadow-2xl">
-                   <input 
-                      type="text" 
-                      value={customInput}
-                      onChange={(e) => setCustomInput(e.target.value)}
-                      placeholder="Simular entrada (ex: 'Citação processo trabalhista aline')..."
-                      className="flex-1 bg-transparent px-4 py-2 text-xs sm:text-sm text-slate-200 outline-none placeholder:text-slate-600"
-                      disabled={isClassifying}
-                   />
-                   <button 
-                      type="submit"
-                      disabled={isClassifying || !customInput.trim()}
-                      className="bg-white/10 hover:bg-white/20 disabled:opacity-50 text-white px-4 py-2.5 rounded-lg text-xs font-semibold transition-colors flex items-center gap-2 cursor-pointer"
-                   >
-                      {isClassifying ? <RefreshCw className="w-3.5 h-3.5 animate-spin"/> : <Sparkles className="w-3.5 h-3.5"/>}
-                      <span className="hidden sm:inline">{isClassifying ? 'Processando' : 'Simular'}</span>
-                   </button>
-                 </div>
-              </form>
-              <AnimatePresence>
-                {successAnimation && (
-                  <motion.div 
-                    initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
-                    className="absolute -bottom-8 w-full text-center text-[10px] text-emerald-400 font-mono font-bold tracking-wider uppercase"
-                  >
-                    ✓ Fluxo processado e encaminhado
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-
-            {/* Main Flow Area */}
-            <div className="absolute inset-0 flex flex-col md:flex-row items-center justify-between px-6 sm:px-12 pt-28 md:pt-16 pb-8 z-10 pointer-events-none">
-              
-              {/* LEFT: INCOMING (Raw messages) */}
-              <div className="w-full md:w-[32%] flex flex-col gap-3 relative h-[30%] md:h-auto justify-center">
-                 <div className="absolute -top-6 left-0 font-mono text-[9px] uppercase tracking-widest text-slate-500 font-bold mb-4 hidden md:block">
-                    Inbound // Entrada
-                 </div>
-                 <div className="flex flex-col gap-3 max-h-[140px] md:max-h-[380px] overflow-hidden justify-start md:justify-center">
-                   <AnimatePresence initial={false}>
-                      {incomingMsgs.slice(0, 3).map((m) => (
-                         <motion.div 
-                           key={m.id}
-                           initial={{ opacity: 0, x: -30, scale: 0.95 }}
-                           animate={{ opacity: 1, x: 0, scale: 1 }}
-                           className="bg-gradient-to-b from-white/[0.08] to-[#0B0F19]/80 backdrop-blur-md border border-white/10 p-3.5 rounded-2xl w-full text-left relative overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.12)]"
-                         >
-                            <div className="relative flex flex-col gap-1.5">
-                              <div className="flex items-start justify-between">
-                                 <div className="flex items-center gap-3">
-                                     {m.channel === 'whatsapp' && (
-                                        <div className="w-10 h-10 rounded-full bg-emerald-500 text-white flex items-center justify-center shadow-[0_0_15px_rgba(16,185,129,0.5)]">
-                                           <MessageCircle className="w-5 h-5" fill="currentColor" />
-                                        </div>
-                                     )}
-                                     {m.channel === 'email' && (
-                                        <div className="w-10 h-10 rounded-[10px] bg-white text-blue-500 flex items-center justify-center shadow-[0_0_15px_rgba(255,255,255,0.2)]">
-                                           <Mail className="w-5 h-5" fill="currentColor" strokeWidth={1} />
-                                        </div>
-                                     )}
-                                     {m.channel === 'publicacao' && (
-                                        <div className="w-10 h-10 rounded-[10px] bg-purple-500 text-white flex items-center justify-center shadow-[0_0_15px_rgba(168,85,247,0.5)]">
-                                           <Landmark className="w-5 h-5" fill="currentColor" />
-                                        </div>
-                                     )}
-                                     {m.channel === 'documento' && (
-                                        <div className="w-10 h-10 rounded-[10px] bg-red-500 text-white flex items-center justify-center shadow-[0_0_15px_rgba(239,68,68,0.5)]">
-                                           <FileText className="w-5 h-5" fill="currentColor" />
-                                        </div>
-                                     )}
-                                     {m.channel === 'sistema' && (
-                                        <div className="w-10 h-10 rounded-[10px] bg-indigo-500 text-white flex items-center justify-center shadow-[0_0_15px_rgba(99,102,241,0.5)]">
-                                           <Inbox className="w-5 h-5" fill="currentColor" />
-                                        </div>
-                                     )}
-
-                                     <div className="flex flex-col">
-                                        <span className="text-[13px] font-bold text-slate-100 leading-tight tracking-wide">{m.channelName}</span>
-                                        <span className="text-[10px] text-slate-400">{m.subtitle}</span>
-                                     </div>
-                                 </div>
-                                 <span className="text-[9px] font-mono text-slate-500 mt-1 pl-2">{m.time}</span>
-                              </div>
-                              
-                              <p className="text-[10px] sm:text-[11px] text-[#ADA7C7] line-clamp-2 leading-relaxed ml-[52px]">
-                                {m.text}
-                              </p>
-                            </div>
-                         </motion.div>
-                      ))}
-                   </AnimatePresence>
-                 </div>
-              </div>
-
-              {/* CENTER: AI CORE */}
-              <div className="relative flex flex-col items-center justify-center w-full md:w-[20%] h-32 md:h-full my-4 md:my-0">
-                 
-                 {/* Desktop Connection Lines */}
-                 <div className="hidden md:block absolute left-[-80%] right-[100%] top-1/2 h-px bg-gradient-to-r from-transparent via-juris-500/40 to-juris-500/80 -z-10"></div>
-                 <div className="hidden md:block absolute left-[50%] right-[-80%] top-1/2 h-px bg-gradient-to-r from-juris-500/80 via-blue-500/40 to-transparent -z-10"></div>
-                 
-                 {/* Flowing particles */}
-                 <motion.div 
-                   animate={{ x: [0, 400] }} 
-                   transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                   className="hidden md:block absolute top-1/2 left-[-150%] w-12 h-[2px] bg-gradient-to-r from-transparent to-juris-300 transform -translate-y-1/2 blur-[1px]"
-                 />
-
-                 {/* The Core */}
-                 <div className="relative w-24 h-24 md:w-32 md:h-32 flex items-center justify-center">
-                   <div className="absolute inset-0 rounded-full border border-juris-500/20 md:border-juris-500/30 animate-[spin_4s_linear_infinite]"></div>
-                   <div className="absolute inset-2 md:inset-3 rounded-full border border-blue-400/20 md:border-blue-400/30 animate-[spin_3s_linear_infinite_reverse]"></div>
-                   <div className={`w-14 h-14 md:w-20 md:h-20 rounded-full absolute transition-all duration-300 ${isClassifying ? 'bg-gradient-to-br from-juris-500 to-blue-600 shadow-[0_0_60px_rgba(100,50,255,0.8)] scale-110' : 'bg-slate-900 shadow-[0_0_20px_rgba(100,50,255,0.3)]'} flex items-center justify-center border border-white/10 z-10 overflow-hidden`}>
-                      {isClassifying && (
-                        <div className="absolute inset-0 bg-white/20 animate-pulse"></div>
-                      )}
-                      <Zap className={`w-6 h-6 md:w-8 md:h-8 ${isClassifying ? 'text-white' : 'text-slate-400'}`} />
-                   </div>
-                 </div>
-                 
-                 <div className="mt-2 md:mt-8 font-mono text-[9px] md:text-[10px] text-juris-300 tracking-[0.2em] md:tracking-[0.3em] uppercase opacity-80">
-                  {isClassifying ? 'Processando' : 'Sistema Ativo'}
-                 </div>
-              </div>
-
-              {/* RIGHT: OUTGOING (Actions) */}
-              <div className="w-full md:w-[32%] flex flex-col gap-3 relative h-[30%] md:h-auto justify-center">
-                 <div className="absolute -top-6 right-0 font-mono text-[9px] uppercase tracking-widest text-slate-500 font-bold mb-4 hidden md:block text-right">
-                    Outbound // Ação
-                 </div>
-                 <div className="flex flex-col gap-3 max-h-[140px] md:max-h-[380px] overflow-hidden justify-start md:justify-center">
-                   <AnimatePresence initial={false}>
-                      {incomingMsgs.slice(0, 3).map((m) => (
-                         <motion.div 
-                           key={`out-${m.id}`}
-                           initial={{ opacity: 0, x: 30, scale: 0.95 }}
-                           animate={{ opacity: 1, x: 0, scale: 1 }}
-                           className="bg-white/[0.02] backdrop-blur-md border border-white/5 p-3 md:p-4 rounded-2xl w-full relative overflow-hidden text-left shadow-[0_0_30px_-10px_rgba(0,0,0,0.5)]"
-                         >
-                            <div className={`absolute top-0 left-0 w-1 h-full ${m.tagClass.split(' ')[0]}`}></div>
-                            <div className="pl-2">
-                               <div className="flex items-center justify-between mb-2">
-                                  <span className={`text-[8.5px] font-mono px-2 py-0.5 rounded border ${m.tagClass}`}>
-                                     {m.category}
-                                  </span>
-                                  <CheckCircle2 className={`w-3.5 h-3.5 ${m.tagClass.split(' ')[1]}`} />
+                {/* Main Content Area */}
+                <div className="flex-1 flex overflow-hidden min-h-0 bg-[#1e1e1e]">
+                  
+                  {/* Left Column: Mensagens Chegando */}
+                  <div className="flex-[1.2] flex flex-col border-r border-[#333] p-4 overflow-y-auto custom-scrollbar">
+                    <h3 className="text-[11px] font-bold text-orange-200 uppercase tracking-wider text-center mb-4">
+                      MENSAGENS CHEGANDO
+                    </h3>
+                    <div className="flex flex-col gap-3">
+                      {incomingMsgs.map(msg => (
+                        <div key={`in-${msg.id}`} className="bg-[#2d2d2d] border border-[#444] rounded-lg p-2.5">
+                          <div className="flex items-start gap-2.5">
+                            {msg.logo && (
+                               <img src={msg.logo} alt="Logo" className="w-3.5 h-3.5 object-contain shrink-0 mt-[1px]" />
+                            )}
+                            <div className="flex-1 min-w-0">
+                               <div className="text-[11.5px] font-bold text-gray-200 mb-0.5 truncate">{msg.from}</div>
+                               <div className="text-[10.5px] text-gray-400 overflow-hidden text-ellipsis line-clamp-2 leading-snug">
+                                 {msg.text}
                                </div>
-                               <div className="text-[11px] md:text-sm font-bold text-slate-200 mb-1 leading-snug">{m.actionTitle}</div>
-                               <p className="text-[9.5px] md:text-[10.5px] text-slate-400 leading-relaxed font-mono tracking-tight">
-                                 {m.actionDesc}
-                               </p>
                             </div>
-                         </motion.div>
+                          </div>
+                        </div>
                       ))}
-                   </AnimatePresence>
-                 </div>
-              </div>
+                    </div>
+                  </div>
 
+                  {/* Middle Area: Divider with Text + Classificadas pela IA */}
+                  <div className="relative flex-[1.3] flex flex-col p-4 overflow-y-auto custom-scrollbar">
+                    {/* Vertical Divider Line with Rotated text */}
+                    <div className="absolute left-[0px] top-4 bottom-4 w-[1px] bg-[#333]"></div>
+                    <div className="absolute left-[-16px] top-1/2 -translate-y-1/2 -rotate-90 text-[10px] text-gray-500 font-mono tracking-widest bg-[#1e1e1e] px-2 whitespace-nowrap z-10">
+                      IA analisa
+                    </div>
+                    
+                    <h3 className="text-[11px] font-bold text-orange-200 uppercase tracking-wider text-center mb-4">
+                      CLASSIFICADAS PELA IA
+                    </h3>
+                    <div className="flex flex-col gap-3">
+                      {incomingMsgs.map(msg => {
+                        let textClass = 'text-gray-900';
+                        if (msg.iconName === 'user') textClass = 'text-[#1e3a8a]';
+                        if (msg.iconName === 'bell') textClass = 'text-[#991b1b]';
+                        if (msg.iconName === 'archive') textClass = 'text-[#3f3f46]';
+                        if (msg.iconName === 'message') textClass = 'text-[#14532d]';
+                        
+                        return (
+                        <div key={`mid-${msg.id}`} className="bg-[#2d2d2d] border border-[#444] rounded-lg p-3 flex justify-between items-center relative overflow-hidden">
+                          <div className={`absolute left-0 top-[-1px] bottom-[-1px] w-1 ${msg.tagClass.split(' ')[0].replace('/10', '')}`}></div>
+                          <div className="pl-2">
+                            <div className="text-[12px] font-bold text-gray-200">{msg.fromName}</div>
+                            <div className="text-[11px] text-gray-400 mt-1">{msg.conf}</div>
+                          </div>
+                          <div className={`px-2.5 py-1 rounded border bg-white text-[10px] font-bold shadow-sm ${textClass} ${msg.tagClass.split(' ')[2].replace('/30', '')}`}>
+                             {msg.category}
+                          </div>
+                        </div>
+                      )})}
+                    </div>
+                  </div>
+
+                  {/* Right Area: Ações Automáticas */}
+                  <div className="relative flex-[1.5] flex flex-col p-4 overflow-y-auto custom-scrollbar">
+                    {/* Vertical Divider Line with Rotated text */}
+                    <div className="absolute left-[0px] top-4 bottom-4 w-[1px] bg-[#333]"></div>
+                    <div className="absolute left-[-16px] top-1/2 -translate-y-1/2 -rotate-90 text-[10px] text-gray-500 font-mono tracking-widest bg-[#1e1e1e] px-2 whitespace-nowrap z-10">
+                      ação
+                    </div>
+                    
+                    <h3 className="text-[11px] font-bold text-orange-200 uppercase tracking-wider text-center mb-4">
+                      AÇÕES AUTOMÁTICAS
+                    </h3>
+                    <div className="flex flex-col gap-3">
+                      {incomingMsgs.map((msg, idx) => {
+                        let textTitleClass = 'text-gray-900';
+                        let textDescClass = 'text-gray-600';
+                        let IconComponent = Zap;
+                        
+                        if (msg.iconName === 'user') {
+                          textTitleClass = 'text-[#1e3a8a]';
+                          textDescClass = 'text-[#1e40af]';
+                          IconComponent = Users;
+                        } else if (msg.iconName === 'bell') {
+                          textTitleClass = 'text-[#991b1b]';
+                          textDescClass = 'text-[#b91c1c]';
+                          IconComponent = Bell;
+                        } else if (msg.iconName === 'archive') {
+                          textTitleClass = 'text-[#3f3f46]';
+                          textDescClass = 'text-[#52525b]';
+                          IconComponent = Archive;
+                        } else if (msg.iconName === 'message') {
+                          textTitleClass = 'text-[#14532d]';
+                          textDescClass = 'text-[#166534]';
+                          IconComponent = MessageSquare;
+                        }
+
+                        return (
+                          <div key={`out-${msg.id}`} className={`border rounded-lg p-3 ${msg.actionClass}`}>
+                            <div className="flex gap-2">
+                               <div className="text-[14px]">
+                                 <IconComponent className={`w-4 h-4 mt-0.5 ${textDescClass}`} />
+                               </div>
+                               <div>
+                                 <div className={`text-[12px] font-bold mb-0.5 ${textTitleClass}`}>{msg.actionTitle}</div>
+                                 <div className={`text-[11px] font-medium ${textDescClass}`}>
+                                   {msg.actionDesc}
+                                 </div>
+                               </div>
+                            </div>
+                          </div>
+                        )
+                      })}
+                    </div>
+                  </div>
+                  
+                </div>
+
+              </div>
             </div>
+            
+            {/* Macbook Bottom Base */}
+            <div className="relative mx-auto bg-[#1A1C23] border-t border-gray-700/50 rounded-b-2xl h-[24px] max-w-[1000px] shadow-[0_20px_50px_rgba(0,0,0,0.5)] md:h-[32px]">
+               {/* Thumb indent */}
+               <div className="absolute left-1/2 top-0 -translate-x-1/2 rounded-b-xl w-[80px] h-[6px] md:w-[120px] md:h-[8px] bg-black/40"></div>
+            </div>
+            
           </div>
 
         </div>
