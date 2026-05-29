@@ -477,28 +477,32 @@ export default function App() {
 
           <div className="flex flex-wrap gap-3 justify-center max-w-4xl mx-auto mb-12 select-none">
             
-            <div className="bg-[#0f111a]/80 backdrop-blur-xl border border-white/5 shadow-2xl px-4 py-3.5 rounded-xl text-xs font-semibold text-slate-300 flex items-center gap-3 transition-all hover:border-white/10">
-              <img src="/logogmail.png" alt="Gmail" className="w-7 h-7 object-contain" />
+            <div className="bg-[#0f111a]/80 backdrop-blur-xl border border-white/5 shadow-2xl px-5 py-4 rounded-xl text-sm font-semibold text-slate-300 flex items-center gap-4 transition-all hover:border-white/10 hover:-translate-y-1">
+              <img src="/logogmail.png" alt="Gmail" className="w-10 h-10 object-contain drop-shadow-md" />
               <span>Gmail Workspace</span>
             </div>
 
-            <div className="bg-[#0f111a]/80 backdrop-blur-xl border border-white/5 shadow-2xl px-4 py-3.5 rounded-xl text-xs font-semibold text-slate-300 flex items-center gap-3 transition-all hover:border-white/10">
-              <img src="/logooutlook.png" alt="Outlook" className="w-7 h-7 object-contain mix-blend-screen" />
+            <div className="bg-[#0f111a]/80 backdrop-blur-xl border border-white/5 shadow-2xl px-5 py-4 rounded-xl text-sm font-semibold text-slate-300 flex items-center gap-4 transition-all hover:border-white/10 hover:-translate-y-1">
+              <img src="/logooutlook.png" alt="Outlook" className="w-10 h-10 object-contain drop-shadow-md" />
               <span>Microsoft Outlook</span>
             </div>
 
-            <div className="bg-[#0f111a]/80 backdrop-blur-xl border border-white/5 shadow-2xl px-4 py-3.5 rounded-xl text-xs font-semibold text-slate-300 flex items-center gap-3 transition-all hover:border-white/10">
-              <img src="/logowhatsap.png" alt="WhatsApp" className="w-7 h-7 object-contain" />
+            <div className="bg-[#0f111a]/80 backdrop-blur-xl border border-white/5 shadow-2xl px-5 py-4 rounded-xl text-sm font-semibold text-slate-300 flex items-center gap-4 transition-all hover:border-white/10 hover:-translate-y-1">
+              <img src="/logowhatsap.png" alt="WhatsApp" className="w-10 h-10 object-contain drop-shadow-md" />
               <span>WhatsApp Cloud API</span>
             </div>
 
-            <div className="bg-[#0f111a]/80 backdrop-blur-xl border border-white/5 shadow-2xl px-4 py-3.5 rounded-xl text-xs font-semibold text-slate-300 flex items-center gap-2.5 transition-all hover:border-white/10">
-              <Database className="w-4 h-4 text-purple-400" />
+            <div className="bg-[#0f111a]/80 backdrop-blur-xl border border-white/5 shadow-2xl px-5 py-4 rounded-xl text-sm font-semibold text-slate-300 flex items-center gap-3 transition-all hover:border-white/10 hover:-translate-y-1">
+              <div className="w-10 h-10 flex items-center justify-center">
+                <Database className="w-6 h-6 text-purple-400 drop-shadow-md" />
+              </div>
               <span>Yahoo & Apple Mail</span>
             </div>
 
-            <div className="bg-[#0f111a]/80 backdrop-blur-xl border border-white/5 shadow-2xl px-4 py-3.5 rounded-xl text-xs font-semibold text-slate-300 flex items-center gap-2.5 transition-all hover:border-white/10">
-              <Scale className="w-4 h-4 text-[#8B5CF6]" />
+            <div className="bg-[#0f111a]/80 backdrop-blur-xl border border-white/5 shadow-2xl px-5 py-4 rounded-xl text-sm font-semibold text-slate-300 flex items-center gap-3 transition-all hover:border-white/10 hover:-translate-y-1">
+              <div className="w-10 h-10 flex items-center justify-center">
+                <Scale className="w-6 h-6 text-[#8B5CF6] drop-shadow-md" />
+              </div>
               <span>Tribunais (TRTs, TJSP, etc)</span>
             </div>
 
@@ -527,7 +531,7 @@ export default function App() {
               Personalização de Tom
             </span>
             <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-[#EDEAF7] mb-4">
-              A IA aprende as regras e o estilo da sua banca
+              A IA aprende as regras e o <span className="bg-gradient-to-r from-juris-200 via-juris-400 to-purple-300 bg-clip-text text-transparent">estilo da sua banca</span>
             </h2>
             <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
               Tabela de honorários, preferências de agenda, teses de petição preferidas e o seu tom de voz exato — tudo configurado sob sua curadoria.
@@ -537,31 +541,32 @@ export default function App() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto text-left">
             
             {/* Antes block */}
-            <div className="bg-slate-900/30 border border-white/5 rounded-2xl p-5 flex flex-col justify-between">
+            <div className="bg-[#0f111a]/80 backdrop-blur-xl border border-white/5 hover:border-rose-500/30 rounded-[1.5rem] p-6 flex flex-col justify-between transition-all shadow-2xl hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(244,63,94,0.1)]">
               <div>
-                <div className="text-[10px] font-mono uppercase tracking-widest text-rose-400 bg-rose-500/10 px-2 py-0.5 rounded border border-rose-500/20 inline-block mb-4">
+                <div className="text-[10px] font-mono uppercase tracking-widest text-rose-400 bg-rose-500/10 px-3 py-1 rounded-full border border-rose-500/20 inline-block mb-6 shadow-[0_0_15px_rgba(244,63,94,0.1)]">
                   ❌ Comunicação Genérica Sem IA
                 </div>
-                <div className="bg-slate-950/80 p-4 rounded-xl border border-white/5 font-mono text-xs text-rose-300 leading-relaxed">
+                <div className="bg-slate-950/80 p-5 rounded-xl border border-white/5 font-mono text-xs text-rose-300 leading-relaxed">
                   "Prezado(a), informamos que seu processo encontra-se em andamento normal no dia de hoje. Em caso de dúvidas, queira agendar atendimento presencial em nossa recepção regional."
                 </div>
               </div>
-              <p className="text-[11px] text-slate-500 mt-4 leading-normal">
+              <p className="text-[12px] text-slate-400 mt-6 leading-normal">
                 Texto frio, pouco informativo, que costuma gerar ansiedade no cliente e novas chamadas solicitando explicações técnicas.
               </p>
             </div>
 
             {/* Depois block */}
-            <div className="bg-emerald-500/[0.02] border border-emerald-500/20 rounded-2xl p-5 flex flex-col justify-between">
-              <div>
-                <div className="text-[10px] font-mono uppercase tracking-widest text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20 inline-block mb-4">
+            <div className="bg-[#0f111a]/80 backdrop-blur-xl border border-emerald-500/10 hover:border-emerald-500/40 rounded-[1.5rem] p-6 flex flex-col justify-between transition-all shadow-2xl hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(16,185,129,0.15)] relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent pointer-events-none rounded-[1.5rem]" />
+              <div className="relative">
+                <div className="text-[10px] font-mono uppercase tracking-widest text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20 inline-block mb-6 shadow-[0_0_15px_rgba(16,185,129,0.2)]">
                   ✓ Comunicação Personalizada Com IA
                 </div>
-                <div className="bg-slate-950/80 p-4 rounded-xl border border-emerald-500/20 font-mono text-xs text-[#9FE1CB] leading-relaxed">
+                <div className="bg-slate-950/80 p-5 rounded-xl border border-emerald-500/20 font-mono text-xs text-[#9FE1CB] leading-relaxed relative z-10 shadow-lg">
                   "Olá, João! Analisei seu processo agora mesmo — houve uma publicação ontem favorável na 3ª Vara sobre as horas extras. O prazo do recálculo é 12/06. Já incluí na pauta do Dr. Ferreira e de toda a nossa controladoria. Qualquer dúvida é só me chamar!"
                 </div>
               </div>
-              <p className="text-[11px] text-emerald-400/80 mt-4 leading-normal">
+              <p className="text-[12px] text-emerald-400/90 mt-6 leading-normal relative z-10">
                 Comunicação com alta empatia, dados de andamento precisos do tribunal e contextualização clara sobre quem é o advogado encarregado.
               </p>
             </div>
