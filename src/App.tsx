@@ -261,51 +261,6 @@ export default function App() {
         </motion.div>
       </section>
 
-      {/* CONTEXT / PROBLEM STATEMENT */}
-      <section className="py-16 sm:py-24 border-b border-white/5 bg-[#0a0c10] relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(99,102,241,0.05)_0%,transparent_70%)] pointer-events-none" />
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.8 }}
-            className="bg-slate-900/50 backdrop-blur-xl border border-white/5 p-8 sm:p-12 rounded-[2rem] shadow-2xl"
-          >
-            <p className="text-sm sm:text-base md:text-lg text-slate-300 leading-relaxed font-medium mb-10 text-center">
-              A combinação de volume, custo por caso e imprevisibilidade gera um <span className="text-white font-bold">impacto silencioso e contínuo</span> no resultado da empresa — muitas vezes subestimado pelas lideranças.
-            </p>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="flex flex-col gap-3 p-5 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 transition-colors">
-                <div className="w-8 h-8 rounded-full bg-rose-500/20 flex items-center justify-center text-rose-400 mb-2">
-                  <AlertTriangle className="w-4 h-4" />
-                </div>
-                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                  Aumento constante do número de ações e do custo corporativo por defesa.
-                </p>
-              </div>
-              <div className="flex flex-col gap-3 p-5 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 transition-colors">
-                <div className="w-8 h-8 rounded-full bg-amber-500/20 flex items-center justify-center text-amber-400 mb-2">
-                  <AlertTriangle className="w-4 h-4" />
-                </div>
-                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                  Provisões contábeis imprecisas e difíceis de justificar perante auditorias.
-                </p>
-              </div>
-              <div className="flex flex-col gap-3 p-5 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 transition-colors">
-                <div className="w-8 h-8 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400 mb-2">
-                  <AlertTriangle className="w-4 h-4" />
-                </div>
-                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                  Dependência de escritórios externos combinada à falta de padronização.
-                </p>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
       {/* S2 SECTION: COMO A IA PENSA (3 ETAPAS) */}
       <section id="como-funciona" className="py-16 sm:py-24 border-b border-white/5 bg-slate-900/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
