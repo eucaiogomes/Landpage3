@@ -7,72 +7,13 @@ import {
   Users, MessageCircle, Landmark, FileText, Inbox, Bell
 } from 'lucide-react';
 
-// Custom simulated cases for the Interactive Playground
-const INITIAL_INCOMING = [
-  {
-    id: 'msg-1',
-    from: 'De: joao.silva@gmail.com',
-    text: 'Boa tarde, gostaria de saber sobre honorários para processo trabalhista...',
-    fromName: 'João Silva - E-mail',
-    logo: '/logogmail.png',
-    conf: 'conf. 97%',
-    category: 'Lead novo',
-    tagClass: 'bg-blue-500/10 text-blue-300 border-blue-500/30',
-    iconName: 'user',
-    actionTitle: 'Card criado no CRM',
-    actionDesc: '+ mensagem de qualificação enviada',
-    actionClass: 'bg-[#EFF6FF] border-[#BFDBFE]'
-  },
-  {
-    id: 'msg-2',
-    from: 'De: tribunal.sp@tjsp.gov.br',
-    text: '⚠ INTIMAÇÃO — Prazo 5 dias úteis - Proc. 0012345-67',
-    fromName: 'TJSP - Tribunal',
-    logo: '/logogmail.png',
-    conf: 'vence em 5 dias',
-    category: 'Prazo crítico',
-    tagClass: 'bg-red-500/10 text-red-300 border-red-500/30',
-    iconName: 'bell',
-    actionTitle: 'Advogado notificado',
-    actionDesc: '+ 1ª versão da resposta gerada',
-    actionClass: 'bg-[#FEF2F2] border-[#FECACA]'
-  },
-  {
-    id: 'msg-3',
-    from: 'De: newsletter@legalnews.com',
-    text: 'Notícias jurídicas da semana - Edição 142',
-    fromName: 'LegalNews - Newsletter',
-    logo: '/logogmail.png',
-    conf: 'arquivado',
-    category: 'Spam/newsletter',
-    tagClass: 'bg-gray-500/10 text-gray-300 border-gray-500/30',
-    iconName: 'archive',
-    actionTitle: 'Arquivado automaticamente',
-    actionDesc: 'sem ação necessária',
-    actionClass: 'bg-[#F8FAFC] border-[#E2E8F0]'
-  },
-  {
-    id: 'msg-4',
-    from: 'WhatsApp - +55 11 9XXXX-XXXX',
-    text: 'Olá, meu processo teve alguma movimentação?',
-    fromName: 'Cliente - WhatsApp',
-    logo: '/logowhatsap.png',
-    conf: 'andamento processo',
-    category: 'Cliente urgente',
-    tagClass: 'bg-green-500/10 text-green-300 border-green-500/30',
-    iconName: 'message',
-    actionTitle: 'Status enviado ao cliente',
-    actionDesc: 'linguagem acessível + proc. atualizado',
-    actionClass: 'bg-[#F0FDF4] border-[#BBF7D0]'
-  }
-];
+
 
 export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [demoSubmitSuccess, setDemoSubmitSuccess] = useState(false);
   
-  // Custom interactive playground state
-  const [incomingMsgs] = useState(INITIAL_INCOMING);
+
 
   // Form registration
   const [form, setForm] = useState({
@@ -235,157 +176,12 @@ export default function App() {
           </div>
 
           {/* INTERACTIVE DEMO - IN MACBOOK MOCKUP */}
-          <div className="relative w-full max-w-[1000px] mx-auto mt-16 px-4 sm:px-6">
-            <div className="relative mx-auto border-gray-800 dark:border-gray-800 bg-gray-800 border-[8px] border-b-0 rounded-t-[2xl] h-[550px] shadow-2xl overflow-hidden">
-              <div className="w-full h-full bg-[#1e1e1e] relative flex flex-col font-sans">
-                
-                {/* Macbook Camera Notch */}
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-4 bg-gray-800 rounded-b-xl z-50 flex items-center justify-center">
-                   <div className="w-1.5 h-1.5 rounded-full bg-white/20"></div>
-                </div>
-
-                {/* Window Header */}
-                <div className="h-10 border-b border-gray-700/50 flex items-center justify-between px-4 bg-[#252526]">
-                  <div className="flex items-center gap-2">
-                    <div className="flex gap-1.5">
-                      <div className="w-3 h-3 rounded-full bg-[#ff5f56]"></div>
-                      <div className="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
-                      <div className="w-3 h-3 rounded-full bg-[#27c93f]"></div>
-                    </div>
-                    <span className="ml-4 text-[13px] text-gray-300 font-medium">Inbox do escritório — ao vivo</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.8)]"></div>
-                    <span className="text-[11px] font-bold text-gray-300">IA ativa</span>
-                  </div>
-                </div>
-
-                {/* Main Content Area */}
-                <div className="flex-1 flex overflow-hidden min-h-0 bg-[#1e1e1e]">
-                  
-                  {/* Left Column: Mensagens Chegando */}
-                  <div className="flex-[1.2] flex flex-col border-r border-[#333] p-4 overflow-y-auto custom-scrollbar">
-                    <h3 className="text-[11px] font-bold text-orange-200 uppercase tracking-wider text-center mb-4">
-                      MENSAGENS CHEGANDO
-                    </h3>
-                    <div className="flex flex-col gap-3">
-                      {incomingMsgs.map(msg => (
-                        <div key={`in-${msg.id}`} className="bg-[#2d2d2d] border border-[#444] rounded-lg p-2.5">
-                          <div className="flex items-start gap-2.5">
-                            {msg.logo && (
-                               <img src={msg.logo} alt="Logo" className="w-3.5 h-3.5 object-contain shrink-0 mt-[1px]" />
-                            )}
-                            <div className="flex-1 min-w-0">
-                               <div className="text-[11.5px] font-bold text-gray-200 mb-0.5 truncate">{msg.from}</div>
-                               <div className="text-[10.5px] text-gray-400 overflow-hidden text-ellipsis line-clamp-2 leading-snug">
-                                 {msg.text}
-                               </div>
-                            </div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Middle Area: Divider with Text + Classificadas pela IA */}
-                  <div className="relative flex-[1.3] flex flex-col p-4 overflow-y-auto custom-scrollbar">
-                    {/* Vertical Divider Line with Rotated text */}
-                    <div className="absolute left-[0px] top-4 bottom-4 w-[1px] bg-[#333]"></div>
-                    <div className="absolute left-[-16px] top-1/2 -translate-y-1/2 -rotate-90 text-[10px] text-gray-500 font-mono tracking-widest bg-[#1e1e1e] px-2 whitespace-nowrap z-10">
-                      IA analisa
-                    </div>
-                    
-                    <h3 className="text-[11px] font-bold text-orange-200 uppercase tracking-wider text-center mb-4">
-                      CLASSIFICADAS PELA IA
-                    </h3>
-                    <div className="flex flex-col gap-3">
-                      {incomingMsgs.map(msg => {
-                        let textClass = 'text-gray-900';
-                        if (msg.iconName === 'user') textClass = 'text-[#1e3a8a]';
-                        if (msg.iconName === 'bell') textClass = 'text-[#991b1b]';
-                        if (msg.iconName === 'archive') textClass = 'text-[#3f3f46]';
-                        if (msg.iconName === 'message') textClass = 'text-[#14532d]';
-                        
-                        return (
-                        <div key={`mid-${msg.id}`} className="bg-[#2d2d2d] border border-[#444] rounded-lg p-3 flex justify-between items-center relative overflow-hidden">
-                          <div className={`absolute left-0 top-[-1px] bottom-[-1px] w-1 ${msg.tagClass.split(' ')[0].replace('/10', '')}`}></div>
-                          <div className="pl-2">
-                            <div className="text-[12px] font-bold text-gray-200">{msg.fromName}</div>
-                            <div className="text-[11px] text-gray-400 mt-1">{msg.conf}</div>
-                          </div>
-                          <div className={`px-2.5 py-1 rounded border bg-white text-[10px] font-bold shadow-sm ${textClass} ${msg.tagClass.split(' ')[2].replace('/30', '')}`}>
-                             {msg.category}
-                          </div>
-                        </div>
-                      )})}
-                    </div>
-                  </div>
-
-                  {/* Right Area: Ações Automáticas */}
-                  <div className="relative flex-[1.5] flex flex-col p-4 overflow-y-auto custom-scrollbar">
-                    {/* Vertical Divider Line with Rotated text */}
-                    <div className="absolute left-[0px] top-4 bottom-4 w-[1px] bg-[#333]"></div>
-                    <div className="absolute left-[-16px] top-1/2 -translate-y-1/2 -rotate-90 text-[10px] text-gray-500 font-mono tracking-widest bg-[#1e1e1e] px-2 whitespace-nowrap z-10">
-                      ação
-                    </div>
-                    
-                    <h3 className="text-[11px] font-bold text-orange-200 uppercase tracking-wider text-center mb-4">
-                      AÇÕES AUTOMÁTICAS
-                    </h3>
-                    <div className="flex flex-col gap-3">
-                      {incomingMsgs.map((msg, idx) => {
-                        let textTitleClass = 'text-gray-900';
-                        let textDescClass = 'text-gray-600';
-                        let IconComponent = Zap;
-                        
-                        if (msg.iconName === 'user') {
-                          textTitleClass = 'text-[#1e3a8a]';
-                          textDescClass = 'text-[#1e40af]';
-                          IconComponent = Users;
-                        } else if (msg.iconName === 'bell') {
-                          textTitleClass = 'text-[#991b1b]';
-                          textDescClass = 'text-[#b91c1c]';
-                          IconComponent = Bell;
-                        } else if (msg.iconName === 'archive') {
-                          textTitleClass = 'text-[#3f3f46]';
-                          textDescClass = 'text-[#52525b]';
-                          IconComponent = Archive;
-                        } else if (msg.iconName === 'message') {
-                          textTitleClass = 'text-[#14532d]';
-                          textDescClass = 'text-[#166534]';
-                          IconComponent = MessageSquare;
-                        }
-
-                        return (
-                          <div key={`out-${msg.id}`} className={`border rounded-lg p-3 ${msg.actionClass}`}>
-                            <div className="flex gap-2">
-                               <div className="text-[14px]">
-                                 <IconComponent className={`w-4 h-4 mt-0.5 ${textDescClass}`} />
-                               </div>
-                               <div>
-                                 <div className={`text-[12px] font-bold mb-0.5 ${textTitleClass}`}>{msg.actionTitle}</div>
-                                 <div className={`text-[11px] font-medium ${textDescClass}`}>
-                                   {msg.actionDesc}
-                                 </div>
-                               </div>
-                            </div>
-                          </div>
-                        )
-                      })}
-                    </div>
-                  </div>
-                  
-                </div>
-
-              </div>
-            </div>
-            
-            {/* Macbook Bottom Base */}
-            <div className="relative mx-auto bg-[#1A1C23] border-t border-gray-700/50 rounded-b-2xl h-[24px] max-w-[1000px] shadow-[0_20px_50px_rgba(0,0,0,0.5)] md:h-[32px]">
-               {/* Thumb indent */}
-               <div className="absolute left-1/2 top-0 -translate-x-1/2 rounded-b-xl w-[80px] h-[6px] md:w-[120px] md:h-[8px] bg-black/40"></div>
-            </div>
-            
+          <div className="relative w-full max-w-[1000px] mx-auto mt-16 px-4 sm:px-6 md:px-8">
+            <img 
+              src="/inbox-demo.png" 
+              alt="Inbox do escritório ao vivo" 
+              className="w-full h-auto rounded-xl sm:rounded-2xl md:rounded-3xl object-contain shadow-2xl ring-1 ring-white/10"
+            />
           </div>
 
         </div>
@@ -424,55 +220,142 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           
           <div className="max-w-2xl mx-auto mb-16">
-            <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-juris-300 font-bold block mb-4">
+            <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-[#8B5CF6] font-bold block mb-4">
               Como a IA pensa
             </span>
             <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-[#EDEAF7] mb-4">
-              Triagem e classificação em tempo real
+              Triagem e classificação em <span className="bg-gradient-to-r from-juris-200 via-juris-400 to-purple-300 bg-clip-text text-transparent">tempo real</span>
             </h2>
             <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
               Cada mensagem recebida pela sua banca jurídica é analisada, catalogada e resolvida em um ciclo de menos de 2 segundos.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-[1100px] mx-auto text-left mt-12">
             
             {/* Step 1 */}
-            <div className="flex flex-col items-center text-center">
-              <div className="bg-slate-900 border border-white/5 rounded-2xl p-6 w-full flex flex-col items-center gap-4 relative group hover:border-juris-500/25 transition-all">
-                <span className="absolute -top-3 left-4 font-mono text-[10px] uppercase tracking-widest bg-juris-500 text-white font-bold p-1 px-3.5 rounded-full">1</span>
+            <div className="flex flex-col text-left">
+              <div className="bg-[#0f111a]/80 backdrop-blur-xl border border-white/5 rounded-[1.5rem] p-7 sm:p-8 w-full flex flex-col relative group transition-all h-full shadow-2xl">
                 
-                <div className="text-3xl mt-2 select-none">📖</div>
-                <h3 className="text-sm font-bold text-slate-200">1 · Lê e Interpreta</h3>
-                <p className="text-xs text-[#ADA7C7] leading-relaxed">
-                  Avalia remetente, assunto, anexos de processo, histórico processual do cliente e intenção em tempo real.
-                </p>
+                <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-[#8B5CF6] font-bold mb-6">
+                  CAMADA 01
+                </span>
+                
+                <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-[#8B5CF6] to-[#5B21B6] flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(139,92,246,0.3)]">
+                  <ShieldCheck className="w-5 h-5 text-white" strokeWidth={2} />
+                </div>
+                
+                <div className="flex-1 flex flex-col">
+                  <h3 className="text-lg font-bold text-slate-100 mb-3 tracking-tight">Leitura e Inteligência</h3>
+                  <p className="text-[13px] text-slate-400 leading-relaxed mb-6 font-medium">
+                    Avalia remetente, assunto, anexos de processo, histórico processual do cliente e intenção em formato de alta velocidade.
+                  </p>
+                  
+                  <div className="w-full h-[1px] bg-white/5 mb-6 mt-auto"></div>
+                  
+                  <ul className="flex flex-col gap-3 font-medium">
+                    <li className="flex items-start gap-2.5 text-[12px] text-slate-400 leading-snug">
+                       <span className="text-[#8B5CF6] text-[10px] translate-y-[2px]">→</span>
+                       Extração de dados estruturados
+                    </li>
+                    <li className="flex items-start gap-2.5 text-[12px] text-slate-400 leading-snug">
+                       <span className="text-[#8B5CF6] text-[10px] translate-y-[2px]">→</span>
+                       Histórico cruzado com base legal
+                    </li>
+                    <li className="flex items-start gap-2.5 text-[12px] text-slate-400 leading-snug">
+                       <span className="text-[#8B5CF6] text-[10px] translate-y-[2px]">→</span>
+                       Análise semântica de anexos PDF
+                    </li>
+                    <li className="flex items-start gap-2.5 text-[12px] text-slate-400 leading-snug">
+                       <span className="text-[#8B5CF6] text-[10px] translate-y-[2px]">→</span>
+                       Detecção profunda de intenção
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
 
             {/* Step 2 */}
-            <div className="flex flex-col items-center text-center">
-              <div className="bg-slate-900 border border-white/5 rounded-2xl p-6 w-full flex flex-col items-center gap-4 relative group hover:border-juris-500/25 transition-all">
-                <span className="absolute -top-3 left-4 font-mono text-[10px] uppercase tracking-widest bg-juris-500 text-white font-bold p-1 px-3.5 rounded-full">2</span>
+            <div className="flex flex-col text-left">
+              <div className="bg-[#0f111a]/80 backdrop-blur-xl border border-white/5 rounded-[1.5rem] p-7 sm:p-8 w-full flex flex-col relative group transition-all h-full shadow-2xl">
                 
-                <div className="text-3xl mt-2 select-none">🏷</div>
-                <h3 className="text-sm font-bold text-slate-200">2 · Classifica de Forma Precisa</h3>
-                <p className="text-xs text-[#ADA7C7] leading-relaxed">
-                  Cataloga como Lead novo, Cliente urgente, Intimação de Tribunal ou Spam — anexando score de periculosidade.
-                </p>
+                <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-[#8B5CF6] font-bold mb-6">
+                  CAMADA 02
+                </span>
+                
+                <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-[#8B5CF6] to-[#5B21B6] flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(139,92,246,0.3)]">
+                  <FileText className="w-5 h-5 text-white" strokeWidth={2} />
+                </div>
+                
+                <div className="flex-1 flex flex-col">
+                  <h3 className="text-lg font-bold text-slate-100 mb-3 tracking-tight">Classificação Precisa</h3>
+                  <p className="text-[13px] text-slate-400 leading-relaxed mb-6 font-medium">
+                    Cataloga cada interação na hora, identificando imediatamente o tipo demanda, tribunal envolvido e prioridade sistêmica.
+                  </p>
+                  
+                  <div className="w-full h-[1px] bg-white/5 mb-6 mt-auto"></div>
+                  
+                  <ul className="flex flex-col gap-3 font-medium">
+                    <li className="flex items-start gap-2.5 text-[12px] text-slate-400 leading-snug">
+                       <span className="text-[#8B5CF6] text-[10px] translate-y-[2px]">→</span>
+                       Lead novo ou cliente existente
+                    </li>
+                    <li className="flex items-start gap-2.5 text-[12px] text-slate-400 leading-snug">
+                       <span className="text-[#8B5CF6] text-[10px] translate-y-[2px]">→</span>
+                       Identificação de intimação e prazo
+                    </li>
+                    <li className="flex items-start gap-2.5 text-[12px] text-slate-400 leading-snug">
+                       <span className="text-[#8B5CF6] text-[10px] translate-y-[2px]">→</span>
+                       Score de periculosidade atrelado
+                    </li>
+                    <li className="flex items-start gap-2.5 text-[12px] text-slate-400 leading-snug">
+                       <span className="text-[#8B5CF6] text-[10px] translate-y-[2px]">→</span>
+                       Filtro inteligente de Spam
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
 
             {/* Step 3 */}
-            <div className="flex flex-col items-center text-center">
-              <div className="bg-slate-900 border border-white/5 rounded-2xl p-6 w-full flex flex-col items-center gap-4 relative group hover:border-juris-500/25 transition-all">
-                <span className="absolute -top-3 left-4 font-mono text-[10px] uppercase tracking-widest bg-juris-500 text-white font-bold p-1 px-3.5 rounded-full">3</span>
+            <div className="flex flex-col text-left">
+              <div className="bg-[#0f111a]/80 backdrop-blur-xl border border-white/5 rounded-[1.5rem] p-7 sm:p-8 w-full flex flex-col relative group transition-all h-full shadow-2xl">
                 
-                <div className="text-3xl mt-2 select-none">⚡</div>
-                <h3 className="text-sm font-bold text-slate-200">3 · Age e Responde</h3>
-                <p className="text-xs text-[#ADA7C7] leading-relaxed">
-                  Minuta peças de defesa, anota prazos na agenda do advogado encarregado e atualiza o CRM automaticamente.
-                </p>
+                <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-[#8B5CF6] font-bold mb-6">
+                  CAMADA 03
+                </span>
+                
+                <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-[#8B5CF6] to-[#5B21B6] flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(139,92,246,0.3)]">
+                  <Zap className="w-5 h-5 text-white" strokeWidth={2} />
+                </div>
+                
+                <div className="flex-1 flex flex-col">
+                  <h3 className="text-lg font-bold text-slate-100 mb-3 tracking-tight">Ação e Resposta</h3>
+                  <p className="text-[13px] text-slate-400 leading-relaxed mb-6 font-medium">
+                    A plataforma reage instantaneamente engatilhando automações configuradas ou efetuando os apontamentos necessários.
+                  </p>
+                  
+                  <div className="w-full h-[1px] bg-white/5 mb-6 mt-auto"></div>
+                  
+                  <ul className="flex flex-col gap-3 font-medium">
+                    <li className="flex items-start gap-2.5 text-[12px] text-slate-400 leading-snug">
+                       <span className="text-[#8B5CF6] text-[10px] translate-y-[2px]">→</span>
+                       Minutas de peças e contestações
+                    </li>
+                    <li className="flex items-start gap-2.5 text-[12px] text-slate-400 leading-snug">
+                       <span className="text-[#8B5CF6] text-[10px] translate-y-[2px]">→</span>
+                       Lançamento de prazo automático
+                    </li>
+                    <li className="flex items-start gap-2.5 text-[12px] text-slate-400 leading-snug">
+                       <span className="text-[#8B5CF6] text-[10px] translate-y-[2px]">→</span>
+                       Atualização e fechamento de ticket no CRM
+                    </li>
+                    <li className="flex items-start gap-2.5 text-[12px] text-slate-400 leading-snug">
+                       <span className="text-[#8B5CF6] text-[10px] translate-y-[2px]">→</span>
+                       Notificação proativa por WhatsApp
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
 
@@ -486,80 +369,88 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           
           <div className="max-w-xl mx-auto mb-16">
-            <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-juris-300 font-bold block mb-4">
+            <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-[#8B5CF6] font-bold block mb-4">
               Tipologia e Ações
             </span>
             <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-[#EDEAF7] mb-4">
-              4 tipos de mensagens, 4 ações automáticas
+              4 tipos de mensagens, <span className="bg-gradient-to-r from-juris-200 via-juris-400 to-purple-300 bg-clip-text text-transparent">4 ações automáticas</span>
             </h2>
             <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
               O fluxo de automação é adaptado dinamicamente com base nas características individuais de cada mensagem ou notificação PJe.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto text-left">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto text-left">
             
             {/* Box 1 */}
-            <div className="bg-slate-900/40 border border-white/5 hover:border-blue-500/20 rounded-2xl p-5 flex flex-col justify-between transition-all">
+            <div className="bg-[#0f111a]/80 backdrop-blur-xl border border-white/5 hover:border-blue-500/30 rounded-[1.5rem] p-6 flex flex-col justify-between transition-all shadow-2xl group">
               <div>
-                <span className="inline-block bg-blue-500/10 text-blue-400 border border-blue-500/20 rounded-full px-3 py-1 text-[10px] font-mono uppercase tracking-wider mb-3">
+                <span className="inline-block bg-blue-500/10 backdrop-blur-md text-blue-400 border border-blue-500/20 rounded-full px-3 py-1 text-[10px] font-mono uppercase tracking-wider mb-4 shadow-[0_0_15px_rgba(59,130,246,0.1)]">
                   Lead novo
                 </span>
-                <p className="text-xs text-slate-300 leading-relaxed mb-4">
+                <p className="text-[13px] text-slate-400 leading-relaxed mb-6 font-medium">
                   Potenciais clientes solicitando cotação de serviços ou honorários contratuais por e-mail ou canais digitais.
                 </p>
               </div>
-              <div className="bg-blue-500/5 border border-blue-500/10 rounded-xl p-3 text-[11px] text-blue-300 mt-2">
-                <div className="font-semibold mb-1">✓ Cria card no CRM</div>
-                <p className="text-[10px] opacity-80 leading-snug">Dispara qualificações e perguntas de triagem no mesmo tom do escritório em segundos.</p>
+              <div className="bg-blue-500/5 backdrop-blur-sm border border-blue-500/10 rounded-xl p-4 text-[12px] text-blue-300 mt-2 transition-all group-hover:bg-blue-500/10">
+                <div className="font-semibold mb-1.5 flex items-center gap-1.5">
+                  ✓ Cria card no CRM
+                </div>
+                <p className="text-[11px] opacity-80 leading-snug">Dispara qualificações e perguntas de triagem no mesmo tom do escritório em segundos.</p>
               </div>
             </div>
 
             {/* Box 2 */}
-            <div className="bg-slate-900/40 border border-white/5 hover:border-rose-500/20 rounded-2xl p-5 flex flex-col justify-between transition-all">
+            <div className="bg-[#0f111a]/80 backdrop-blur-xl border border-white/5 hover:border-rose-500/30 rounded-[1.5rem] p-6 flex flex-col justify-between transition-all shadow-2xl group">
               <div>
-                <span className="inline-block bg-rose-500/10 text-rose-400 border border-rose-500/20 rounded-full px-3 py-1 text-[10px] font-mono uppercase tracking-wider mb-3">
+                <span className="inline-block bg-rose-500/10 backdrop-blur-md text-rose-400 border border-rose-500/20 rounded-full px-3 py-1 text-[10px] font-mono uppercase tracking-wider mb-4 shadow-[0_0_15px_rgba(244,63,94,0.1)]">
                   Prazo crítico
                 </span>
-                <p className="text-xs text-slate-300 leading-relaxed mb-4">
+                <p className="text-[13px] text-slate-400 leading-relaxed mb-6 font-medium">
                   Publicações de tribunais, intimações do Diário Oficial ou notificações processuais fatais.
                 </p>
               </div>
-              <div className="bg-rose-500/5 border border-rose-500/10 rounded-xl p-3 text-[11px] text-rose-300 mt-2">
-                <div className="font-semibold mb-1">✓ Notifica advogado</div>
-                <p className="text-[10px] opacity-80 leading-snug">Cadastra intimação e cria a primeira versão consolidada da petição/resposta.</p>
+              <div className="bg-rose-500/5 backdrop-blur-sm border border-rose-500/10 rounded-xl p-4 text-[12px] text-rose-300 mt-2 transition-all group-hover:bg-rose-500/10">
+                <div className="font-semibold mb-1.5 flex items-center gap-1.5">
+                  ✓ Notifica advogado
+                </div>
+                <p className="text-[11px] opacity-80 leading-snug">Cadastra intimação e cria a primeira versão consolidada da petição/resposta.</p>
               </div>
             </div>
 
             {/* Box 3 */}
-            <div className="bg-slate-900/40 border border-white/5 hover:border-emerald-500/20 rounded-2xl p-5 flex flex-col justify-between transition-all">
+            <div className="bg-[#0f111a]/80 backdrop-blur-xl border border-white/5 hover:border-emerald-500/30 rounded-[1.5rem] p-6 flex flex-col justify-between transition-all shadow-2xl group">
               <div>
-                <span className="inline-block bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-full px-3 py-1 text-[10px] font-mono uppercase tracking-wider mb-3">
+                <span className="inline-block bg-emerald-500/10 backdrop-blur-md text-emerald-400 border border-emerald-500/20 rounded-full px-3 py-1 text-[10px] font-mono uppercase tracking-wider mb-4 shadow-[0_0_15px_rgba(16,185,129,0.1)]">
                   Cliente — andamento
                 </span>
-                <p className="text-xs text-slate-300 leading-relaxed mb-4">
+                <p className="text-[13px] text-slate-400 leading-relaxed mb-6 font-medium">
                   Clientes ativos cobrando novidades, datas de audiências ou andamentos processuais.
                 </p>
               </div>
-              <div className="bg-emerald-500/5 border border-emerald-500/10 rounded-xl p-3 text-[11px] text-emerald-300 mt-2">
-                <div className="font-semibold mb-1">✓ Busca status no TRT</div>
-                <p className="text-[10px] opacity-80 leading-snug">Varre o diário do tribunal e responde com termos amigáveis sem termos complexos.</p>
+              <div className="bg-emerald-500/5 backdrop-blur-sm border border-emerald-500/10 rounded-xl p-4 text-[12px] text-emerald-300 mt-2 transition-all group-hover:bg-emerald-500/10">
+                <div className="font-semibold mb-1.5 flex items-center gap-1.5">
+                  ✓ Busca status no TRT
+                </div>
+                <p className="text-[11px] opacity-80 leading-snug">Varre o diário do tribunal e responde com termos amigáveis sem termos complexos.</p>
               </div>
             </div>
 
             {/* Box 4 */}
-            <div className="bg-slate-900/40 border border-white/5 hover:border-slate-500/20 rounded-2xl p-5 flex flex-col justify-between transition-all">
+            <div className="bg-[#0f111a]/80 backdrop-blur-xl border border-white/5 hover:border-slate-500/30 rounded-[1.5rem] p-6 flex flex-col justify-between transition-all shadow-2xl group">
               <div>
-                <span className="inline-block bg-slate-500/10 text-slate-400 border border-slate-500/20 rounded-full px-3 py-1 text-[10px] font-mono uppercase tracking-wider mb-3">
+                <span className="inline-block bg-slate-500/10 backdrop-blur-md text-slate-400 border border-slate-500/20 rounded-full px-3 py-1 text-[10px] font-mono uppercase tracking-wider mb-4 shadow-[0_0_15px_rgba(148,163,184,0.1)]">
                   Spam / newsletter
                 </span>
-                <p className="text-xs text-slate-300 leading-relaxed mb-4">
+                <p className="text-[13px] text-slate-400 leading-relaxed mb-6 font-medium">
                   Propagandas de livros jurídicos, newsletters de notícias gerais e mensagens comerciais sem valor operacional.
                 </p>
               </div>
-              <div className="bg-slate-950 border border-white/5 rounded-xl p-3 text-[11px] text-slate-400 mt-2">
-                <div className="font-semibold mb-1 text-slate-300">✓ Arquiva automaticamente</div>
-                <p className="text-[10px] opacity-80 leading-snug">Limpa a visualização para manter seu foco apenas no que gera faturamento e prazos.</p>
+              <div className="bg-white/5 backdrop-blur-sm border border-white/5 rounded-xl p-4 text-[12px] text-slate-300 mt-2 transition-all group-hover:bg-white/10">
+                <div className="font-semibold mb-1.5 flex items-center gap-1.5 text-slate-200">
+                  ✓ Arquiva automaticamente
+                </div>
+                <p className="text-[11px] opacity-80 leading-snug">Limpa a visualização para manter seu foco apenas no que gera faturamento e prazos.</p>
               </div>
             </div>
 
