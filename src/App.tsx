@@ -464,11 +464,11 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           
           <div className="max-w-2xl mx-auto mb-12">
-            <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-juris-300 font-bold block mb-4">
+            <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-[#8B5CF6] font-bold block mb-4">
               Ecossistema Integrado
             </span>
             <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-[#EDEAF7] mb-4">
-              Conecta direto com o que você já usa todos os dias
+              Conecta direto com o que você já usa <span className="bg-gradient-to-r from-juris-200 via-juris-400 to-purple-300 bg-clip-text text-transparent">todos os dias</span>
             </h2>
             <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
               Setup concluído em menos de 5 minutos. Sem necessidade de desenvolvedor ou códigos complexos.
@@ -477,28 +477,28 @@ export default function App() {
 
           <div className="flex flex-wrap gap-3 justify-center max-w-4xl mx-auto mb-12 select-none">
             
-            <div className="bg-slate-900/80 border border-white/5 px-4 py-3.5 rounded-xl text-xs font-semibold text-slate-300 flex items-center gap-2.5">
-              <Mail className="w-4 h-4 text-rose-400" />
+            <div className="bg-[#0f111a]/80 backdrop-blur-xl border border-white/5 shadow-2xl px-4 py-3.5 rounded-xl text-xs font-semibold text-slate-300 flex items-center gap-2.5 transition-all hover:border-white/10">
+              <img src="/logogmail.png" alt="Gmail" className="w-5 h-5 object-contain" />
               <span>Gmail Workspace</span>
             </div>
 
-            <div className="bg-slate-900/80 border border-white/5 px-4 py-3.5 rounded-xl text-xs font-semibold text-slate-300 flex items-center gap-2.5">
-              <Mail className="w-4 h-4 text-blue-400" />
+            <div className="bg-[#0f111a]/80 backdrop-blur-xl border border-white/5 shadow-2xl px-4 py-3.5 rounded-xl text-xs font-semibold text-slate-300 flex items-center gap-2.5 transition-all hover:border-white/10">
+              <img src="/logooutlook.png" alt="Outlook" className="w-5 h-5 object-contain mix-blend-screen" />
               <span>Microsoft Outlook</span>
             </div>
 
-            <div className="bg-slate-900/80 border border-white/5 px-4 py-3.5 rounded-xl text-xs font-semibold text-slate-300 flex items-center gap-2.5">
-              <MessageSquare className="w-4 h-4 text-emerald-400" />
+            <div className="bg-[#0f111a]/80 backdrop-blur-xl border border-white/5 shadow-2xl px-4 py-3.5 rounded-xl text-xs font-semibold text-slate-300 flex items-center gap-2.5 transition-all hover:border-white/10">
+              <img src="/logowhatsap.png" alt="WhatsApp" className="w-5 h-5 object-contain" />
               <span>WhatsApp Cloud API</span>
             </div>
 
-            <div className="bg-slate-900/80 border border-white/5 px-4 py-3.5 rounded-xl text-xs font-semibold text-slate-300 flex items-center gap-2.5">
-              <Database className="w-4 h-4 text-juris-300" />
+            <div className="bg-[#0f111a]/80 backdrop-blur-xl border border-white/5 shadow-2xl px-4 py-3.5 rounded-xl text-xs font-semibold text-slate-300 flex items-center gap-2.5 transition-all hover:border-white/10">
+              <Database className="w-4 h-4 text-purple-400" />
               <span>Yahoo & Apple Mail</span>
             </div>
 
-            <div className="bg-slate-900/80 border border-white/5 px-4 py-3.5 rounded-xl text-xs font-semibold text-slate-300 flex items-center gap-2.5">
-              <Scale className="w-4 h-4 text-purple-400" />
+            <div className="bg-[#0f111a]/80 backdrop-blur-xl border border-white/5 shadow-2xl px-4 py-3.5 rounded-xl text-xs font-semibold text-slate-300 flex items-center gap-2.5 transition-all hover:border-white/10">
+              <Scale className="w-4 h-4 text-[#8B5CF6]" />
               <span>Tribunais (TRTs, TJSP, etc)</span>
             </div>
 
