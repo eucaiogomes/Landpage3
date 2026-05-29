@@ -144,10 +144,6 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center max-w-4xl mx-auto mb-12">
-            <div className="inline-flex items-center gap-2 bg-juris-500/10 text-juris-300 border border-juris-500/20 rounded-full px-4 py-1 text-xs font-medium tracking-wide mb-6">
-              <Sparkles className="w-3.5 h-3.5 text-juris-400 animate-pulse" />
-              <span>IA jurídica dedicada para filtragem inteligente de e-mail e WhatsApp</span>
-            </div>
             
             <h1 className="text-3xl sm:text-5xl font-extrabold text-[#EDEAF7] leading-[1.1] tracking-tight mb-6">
               Sua caixa de entrada do escritório,<br />
