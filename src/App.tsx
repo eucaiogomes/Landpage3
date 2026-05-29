@@ -4,7 +4,7 @@ import {
   Mail, MessageSquare, Scale, Check, X, Menu, ArrowRight, CornerDownRight, 
   Sparkles, Clock, Database, AlertTriangle, Archive, Play, CheckCircle2, 
   Plus, RefreshCw, Sliders, Shield, Award, Zap, BookOpen, Lock, ShieldCheck, HelpCircle,
-  Users, MessageCircle, Landmark, FileText, Inbox, Bell
+  Users, MessageCircle, Landmark, FileText, Inbox, Bell, Trash2
 } from 'lucide-react';
 
 
@@ -50,7 +50,7 @@ export default function App() {
             
             {/* Logo */}
             <a href="#" className="flex items-center pr-4 hover:opacity-95 transition-opacity">
-              <img src="/logo.png" alt="Juris8 Logo" className="h-11 object-contain" />
+              <img src="/logo.png" alt="Juris8 Logo" className="h-20 w-auto object-contain" />
             </a>
 
             {/* Desktop Navigation */}
@@ -581,25 +581,39 @@ export default function App() {
               Segurança profissional
             </span>
             <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-[#EDEAF7] mb-4">
-              Seus e-mails e andamentos processuais nunca saem do seu controle
+              Seus e-mails e andamentos processuais <span className="bg-gradient-to-r from-juris-200 via-juris-400 to-purple-300 bg-clip-text text-transparent">nunca saem do seu controle</span>
             </h2>
             <p className="text-xs sm:text-sm text-slate-400 leading-relaxed border-b border-white/5 pb-6">
               Privacidade estrita alinhada aos preceitos éticos da OAB de sigilo das comunicações profissionais.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto text-left">
-            <div className="p-4 bg-slate-900/40 border border-white/5 rounded-xl">
-              <h3 className="font-bold text-slate-200 text-xs mb-1">Criptografia em Repouso</h3>
-              <p className="text-[10px] text-slate-400 leading-relaxed">Sua caixa de entrada, tokens de acesso Oauth e dados de andamento protegidos sob chave isolada por cliente.</p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto text-left">
+            <div className="bg-[#0f111a]/80 backdrop-blur-xl border border-white/5 hover:border-juris-500/30 rounded-2xl p-6 transition-all shadow-2xl group hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(99,102,241,0.1)] relative overflow-hidden flex flex-col">
+              <div className="absolute inset-0 bg-gradient-to-br from-juris-500/5 to-transparent pointer-events-none rounded-2xl" />
+              <div className="w-10 h-10 bg-juris-500/10 rounded-lg border border-juris-500/20 flex items-center justify-center mb-4 text-juris-400 relative z-10">
+                <Lock className="w-5 h-5" />
+              </div>
+              <h3 className="font-bold text-slate-200 text-sm mb-2 relative z-10">Criptografia em Repouso</h3>
+              <p className="text-xs text-slate-400 leading-relaxed relative z-10">Sua caixa de entrada, tokens de acesso Oauth e dados de andamento protegidos sob chave isolada por cliente.</p>
             </div>
-            <div className="p-4 bg-slate-900/40 border border-white/5 rounded-xl">
-              <h3 className="font-bold text-slate-200 text-xs mb-1">Mapeamento de Acesso</h3>
-              <p className="text-[10px] text-slate-400 leading-relaxed">Audite exatamente qual decisão a IA tomou por meio do log consolidado de auditoria de cada e-mail triado.</p>
+            
+            <div className="bg-[#0f111a]/80 backdrop-blur-xl border border-white/5 hover:border-juris-500/30 rounded-2xl p-6 transition-all shadow-2xl group hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(99,102,241,0.1)] relative overflow-hidden flex flex-col">
+              <div className="absolute inset-0 bg-gradient-to-br from-juris-500/5 to-transparent pointer-events-none rounded-2xl" />
+              <div className="w-10 h-10 bg-juris-500/10 rounded-lg border border-juris-500/20 flex items-center justify-center mb-4 text-juris-400 relative z-10">
+                <ShieldCheck className="w-5 h-5" />
+              </div>
+              <h3 className="font-bold text-slate-200 text-sm mb-2 relative z-10">Mapeamento de Acesso</h3>
+              <p className="text-xs text-slate-400 leading-relaxed relative z-10">Audite exatamente qual decisão a IA tomou por meio do log consolidado de auditoria de cada e-mail triado.</p>
             </div>
-            <div className="p-4 bg-slate-900/40 border border-white/5 rounded-xl">
-              <h3 className="font-bold text-slate-200 text-xs mb-1">Exclusão Contratual</h3>
-              <p className="text-[10px] text-slate-400 leading-relaxed">Seus dados são apagados definitivamente no momento do cancelamento da assinatura anual ou mensal.</p>
+            
+            <div className="bg-[#0f111a]/80 backdrop-blur-xl border border-white/5 hover:border-juris-500/30 rounded-2xl p-6 transition-all shadow-2xl group hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(99,102,241,0.1)] relative overflow-hidden flex flex-col">
+              <div className="absolute inset-0 bg-gradient-to-br from-juris-500/5 to-transparent pointer-events-none rounded-2xl" />
+              <div className="w-10 h-10 bg-juris-500/10 rounded-lg border border-juris-500/20 flex items-center justify-center mb-4 text-juris-400 relative z-10">
+                <Trash2 className="w-5 h-5" />
+              </div>
+              <h3 className="font-bold text-slate-200 text-sm mb-2 relative z-10">Exclusão Contratual</h3>
+              <p className="text-xs text-slate-400 leading-relaxed relative z-10">Seus dados são apagados definitivamente no momento do cancelamento da assinatura anual ou mensal.</p>
             </div>
           </div>
 
@@ -776,9 +790,9 @@ export default function App() {
       <footer className="bg-slate-950 py-12 border-t border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-xs text-slate-500">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-4">
-            <div className="flex items-center gap-3">
-              <img src="/logo.png" alt="Juris8 Logo" className="h-7 object-contain opacity-80" />
-              <span className="font-mono">LGPD · Política de segurança & privacidade · Termos · © 2026</span>
+            <div className="flex flex-col md:flex-row items-center gap-3">
+              <img src="/logo.png" alt="Juris8 Logo" className="h-10 w-auto object-contain opacity-80" />
+              <span className="font-mono text-center md:text-left">LGPD · Política de segurança & privacidade · Termos · © 2026</span>
             </div>
             <div className="flex gap-4">
               <a href="#" className="hover:text-slate-300 transition-colors">Voltar ao Topo</a>
