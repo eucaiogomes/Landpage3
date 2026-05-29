@@ -143,7 +143,12 @@ export default function App() {
       <section className="relative pt-12 sm:pt-20 pb-16 sm:pb-24 border-b border-white/5 bg-slate-950/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="text-center max-w-4xl mx-auto mb-12">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="text-center max-w-4xl mx-auto mb-12"
+          >
             
             <h1 className="text-3xl sm:text-5xl font-extrabold text-[#EDEAF7] leading-[1.1] tracking-tight mb-6">
               Sua caixa de entrada do escritório,<br />
@@ -154,38 +159,49 @@ export default function App() {
               A IA de triagem ativa lê, classifica, prioriza e minuta respostas completas para seus e-mails e WhatsApps corporativos. Você ganha de volta dezenas de horas semanais focando apenas no essencial.
             </p>
 
-            <div className="flex flex-wrap justify-center gap-3 items-center">
+            <div className="flex flex-col-reverse sm:flex-row justify-center gap-3 items-center w-full sm:w-auto px-4 sm:px-0">
               <a 
-                href="#como-funciona" 
-                className="px-6 py-3.5 rounded-xl font-semibold text-xs sm:text-sm text-slate-200 hover:text-white bg-slate-900 border border-white/5 hover:border-white/15 transition-all flex items-center gap-2 cursor-pointer"
+                href="#demo" 
+                className="w-full sm:w-auto flex justify-center items-center gap-2 px-6 py-3.5 rounded-xl font-semibold text-xs sm:text-sm text-slate-200 hover:text-white bg-slate-900 border border-white/5 hover:border-white/15 transition-all cursor-pointer"
               >
-                <Play className="w-3.5 h-3.5 text-juris-400 fill-juris-400" />
-                Como a IA funciona?
+                <MessageSquare className="w-4 h-4 text-juris-400" />
+                Falar com Vendas
               </a>
               <a 
                 href="#demo" 
-                className="px-6 py-3.5 rounded-xl font-semibold text-xs sm:text-sm tracking-wide bg-gradient-to-r from-juris-500 to-juris-700 hover:brightness-110 text-white shadow-xl shadow-juris-500/20 transition-all cursor-pointer"
+                className="w-full sm:w-auto flex justify-center text-center px-6 py-3.5 rounded-xl font-semibold text-xs sm:text-sm tracking-wide bg-gradient-to-r from-juris-500 to-juris-700 hover:brightness-110 text-white shadow-xl shadow-juris-500/20 transition-all cursor-pointer"
               >
                 Conectar minha caixa — 14 dias grátis
               </a>
             </div>
-          </div>
+          </motion.div>
 
           {/* INTERACTIVE DEMO - IN MACBOOK MOCKUP */}
-          <div className="relative w-full max-w-[1000px] mx-auto mt-16 px-4 sm:px-6 md:px-8">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95, y: 40 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
+            className="relative w-full max-w-[1000px] mx-auto mt-16 px-4 sm:px-6 md:px-8"
+          >
             <img 
               src="/inbox-demo.png" 
               alt="Inbox do escritório ao vivo" 
               className="w-full h-auto rounded-xl sm:rounded-2xl md:rounded-3xl object-contain shadow-2xl ring-1 ring-white/10"
             />
-          </div>
+          </motion.div>
 
         </div>
       </section>
 
       {/* SOCIAL PROOF TRUST BAR */}
       <section className="py-12 border-b border-white/5 bg-slate-950/60 select-none">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6 }}
+          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+        >
           <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
             <span className="inline-flex items-center gap-2 text-xs font-mono font-medium text-slate-400 bg-slate-900 border border-white/5 px-4 py-2 rounded-full shadow-md">
               <ShieldCheck className="w-4 h-4 text-emerald-400" />
@@ -208,14 +224,20 @@ export default function App() {
               Parceiro OAB-SP homologado
             </span>
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* S2 SECTION: COMO A IA PENSA (3 ETAPAS) */}
       <section id="como-funciona" className="py-16 sm:py-24 border-b border-white/5 bg-slate-900/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           
-          <div className="max-w-2xl mx-auto mb-16">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8 }}
+            className="max-w-2xl mx-auto mb-16"
+          >
             <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-[#8B5CF6] font-bold block mb-4">
               Como a IA pensa
             </span>
@@ -225,12 +247,18 @@ export default function App() {
             <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
               Cada mensagem recebida pela sua banca jurídica é analisada, catalogada e resolvida em um ciclo de menos de 2 segundos.
             </p>
-          </div>
+          </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-[1100px] mx-auto text-left mt-12">
             
             {/* Step 1 */}
-            <div className="flex flex-col text-left">
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="flex flex-col text-left"
+            >
               <div className="bg-[#0f111a]/80 backdrop-blur-xl border border-white/5 rounded-[1.5rem] p-7 sm:p-8 w-full flex flex-col relative group transition-all h-full shadow-2xl">
                 
                 <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-[#8B5CF6] font-bold mb-6">
@@ -269,10 +297,16 @@ export default function App() {
                   </ul>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Step 2 */}
-            <div className="flex flex-col text-left">
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="flex flex-col text-left"
+            >
               <div className="bg-[#0f111a]/80 backdrop-blur-xl border border-white/5 rounded-[1.5rem] p-7 sm:p-8 w-full flex flex-col relative group transition-all h-full shadow-2xl">
                 
                 <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-[#8B5CF6] font-bold mb-6">
@@ -311,10 +345,16 @@ export default function App() {
                   </ul>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Step 3 */}
-            <div className="flex flex-col text-left">
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="flex flex-col text-left"
+            >
               <div className="bg-[#0f111a]/80 backdrop-blur-xl border border-white/5 rounded-[1.5rem] p-7 sm:p-8 w-full flex flex-col relative group transition-all h-full shadow-2xl">
                 
                 <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-[#8B5CF6] font-bold mb-6">
@@ -353,7 +393,7 @@ export default function App() {
                   </ul>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
           </div>
 
@@ -364,7 +404,13 @@ export default function App() {
       <section id="fluxos" className="py-16 sm:py-24 border-b border-white/5 bg-slate-950/25">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           
-          <div className="max-w-xl mx-auto mb-16">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8 }}
+            className="max-w-xl mx-auto mb-16"
+          >
             <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-[#8B5CF6] font-bold block mb-4">
               Tipologia e Ações
             </span>
@@ -374,12 +420,18 @@ export default function App() {
             <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
               O fluxo de automação é adaptado dinamicamente com base nas características individuais de cada mensagem ou notificação PJe.
             </p>
-          </div>
+          </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto text-left">
             
             {/* Box 1 */}
-            <div className="bg-[#0f111a]/80 backdrop-blur-xl border border-white/5 hover:border-blue-500/30 rounded-[1.5rem] p-6 flex flex-col justify-between transition-all shadow-2xl group">
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="bg-[#0f111a]/80 backdrop-blur-xl border border-white/5 hover:border-blue-500/30 rounded-[1.5rem] p-6 flex flex-col justify-between transition-all shadow-2xl group"
+            >
               <div>
                 <span className="inline-block bg-blue-500/10 backdrop-blur-md text-blue-400 border border-blue-500/20 rounded-full px-3 py-1 text-[10px] font-mono uppercase tracking-wider mb-4 shadow-[0_0_15px_rgba(59,130,246,0.1)]">
                   Lead novo
@@ -394,10 +446,16 @@ export default function App() {
                 </div>
                 <p className="text-[11px] opacity-80 leading-snug">Dispara qualificações e perguntas de triagem no mesmo tom do escritório em segundos.</p>
               </div>
-            </div>
+            </motion.div>
 
             {/* Box 2 */}
-            <div className="bg-[#0f111a]/80 backdrop-blur-xl border border-white/5 hover:border-rose-500/30 rounded-[1.5rem] p-6 flex flex-col justify-between transition-all shadow-2xl group">
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="bg-[#0f111a]/80 backdrop-blur-xl border border-white/5 hover:border-rose-500/30 rounded-[1.5rem] p-6 flex flex-col justify-between transition-all shadow-2xl group"
+            >
               <div>
                 <span className="inline-block bg-rose-500/10 backdrop-blur-md text-rose-400 border border-rose-500/20 rounded-full px-3 py-1 text-[10px] font-mono uppercase tracking-wider mb-4 shadow-[0_0_15px_rgba(244,63,94,0.1)]">
                   Prazo crítico
@@ -412,10 +470,16 @@ export default function App() {
                 </div>
                 <p className="text-[11px] opacity-80 leading-snug">Cadastra intimação e cria a primeira versão consolidada da petição/resposta.</p>
               </div>
-            </div>
+            </motion.div>
 
             {/* Box 3 */}
-            <div className="bg-[#0f111a]/80 backdrop-blur-xl border border-white/5 hover:border-emerald-500/30 rounded-[1.5rem] p-6 flex flex-col justify-between transition-all shadow-2xl group">
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="bg-[#0f111a]/80 backdrop-blur-xl border border-white/5 hover:border-emerald-500/30 rounded-[1.5rem] p-6 flex flex-col justify-between transition-all shadow-2xl group"
+            >
               <div>
                 <span className="inline-block bg-emerald-500/10 backdrop-blur-md text-emerald-400 border border-emerald-500/20 rounded-full px-3 py-1 text-[10px] font-mono uppercase tracking-wider mb-4 shadow-[0_0_15px_rgba(16,185,129,0.1)]">
                   Cliente — andamento
@@ -430,10 +494,16 @@ export default function App() {
                 </div>
                 <p className="text-[11px] opacity-80 leading-snug">Varre o diário do tribunal e responde com termos amigáveis sem termos complexos.</p>
               </div>
-            </div>
+            </motion.div>
 
             {/* Box 4 */}
-            <div className="bg-[#0f111a]/80 backdrop-blur-xl border border-white/5 hover:border-slate-500/30 rounded-[1.5rem] p-6 flex flex-col justify-between transition-all shadow-2xl group">
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="bg-[#0f111a]/80 backdrop-blur-xl border border-white/5 hover:border-slate-500/30 rounded-[1.5rem] p-6 flex flex-col justify-between transition-all shadow-2xl group"
+            >
               <div>
                 <span className="inline-block bg-slate-500/10 backdrop-blur-md text-slate-400 border border-slate-500/20 rounded-full px-3 py-1 text-[10px] font-mono uppercase tracking-wider mb-4 shadow-[0_0_15px_rgba(148,163,184,0.1)]">
                   Spam / newsletter
@@ -448,7 +518,7 @@ export default function App() {
                 </div>
                 <p className="text-[11px] opacity-80 leading-snug">Limpa a visualização para manter seu foco apenas no que gera faturamento e prazos.</p>
               </div>
-            </div>
+            </motion.div>
 
           </div>
 
@@ -459,7 +529,13 @@ export default function App() {
       <section id="integracoes" className="py-16 sm:py-24 border-b border-white/5 relative bg-slate-900/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           
-          <div className="max-w-2xl mx-auto mb-12">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8 }}
+            className="max-w-2xl mx-auto mb-12"
+          >
             <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-[#8B5CF6] font-bold block mb-4">
               Ecossistema Integrado
             </span>
@@ -469,9 +545,15 @@ export default function App() {
             <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
               Setup concluído em menos de 5 minutos. Sem necessidade de desenvolvedor ou códigos complexos.
             </p>
-          </div>
+          </motion.div>
 
-          <div className="flex flex-wrap gap-3 justify-center max-w-4xl mx-auto mb-12 select-none">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="flex flex-wrap gap-3 justify-center max-w-4xl mx-auto mb-12 select-none"
+          >
             
             <div className="bg-[#0f111a]/80 backdrop-blur-xl border border-white/5 shadow-2xl px-5 py-4 rounded-xl text-sm font-semibold text-slate-300 flex items-center gap-4 transition-all hover:border-white/10 hover:-translate-y-1">
               <img src="/logogmail.png" alt="Gmail" className="w-10 h-10 object-contain drop-shadow-md" />
@@ -502,10 +584,16 @@ export default function App() {
               <span>Tribunais (TRTs, TJSP, etc)</span>
             </div>
 
-          </div>
+          </motion.div>
 
           {/* Flow visual details */}
-          <div className="max-w-xl mx-auto border border-white/5 bg-slate-950/40 p-4 rounded-xl text-center">
+          <motion.div 
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-30px" }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="max-w-xl mx-auto border border-white/5 bg-slate-950/40 p-4 rounded-xl text-center"
+          >
             <div className="flex items-center justify-center gap-3 text-[10.5px] font-mono text-slate-400 flex-wrap">
               <span>Canais e E-mails</span>
               <span className="text-slate-700">→</span>
@@ -513,7 +601,7 @@ export default function App() {
               <span className="text-slate-700">→</span>
               <span>CRM Jurídico / Notificações</span>
             </div>
-          </div>
+          </motion.div>
 
         </div>
       </section>
@@ -522,7 +610,13 @@ export default function App() {
       <section id="aprendizado" className="py-16 sm:py-24 border-b border-white/5 bg-slate-950/25">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           
-          <div className="max-w-2xl mx-auto mb-16">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8 }}
+            className="max-w-2xl mx-auto mb-16"
+          >
             <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-juris-300 font-bold block mb-4">
               Personalização de Tom
             </span>
@@ -532,12 +626,18 @@ export default function App() {
             <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
               Tabela de honorários, preferências de agenda, teses de petição preferidas e o seu tom de voz exato — tudo configurado sob sua curadoria.
             </p>
-          </div>
+          </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto text-left">
             
             {/* Antes block */}
-            <div className="bg-[#0f111a]/80 backdrop-blur-xl border border-white/5 hover:border-rose-500/30 rounded-[1.5rem] p-6 flex flex-col justify-between transition-all shadow-2xl hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(244,63,94,0.1)]">
+            <motion.div 
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="bg-[#0f111a]/80 backdrop-blur-xl border border-white/5 hover:border-rose-500/30 rounded-[1.5rem] p-6 flex flex-col justify-between transition-all shadow-2xl hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(244,63,94,0.1)]"
+            >
               <div>
                 <div className="text-[10px] font-mono uppercase tracking-widest text-rose-400 bg-rose-500/10 px-3 py-1 rounded-full border border-rose-500/20 inline-block mb-6 shadow-[0_0_15px_rgba(244,63,94,0.1)]">
                   ❌ Comunicação Genérica Sem IA
@@ -549,10 +649,16 @@ export default function App() {
               <p className="text-[12px] text-slate-400 mt-6 leading-normal">
                 Texto frio, pouco informativo, que costuma gerar ansiedade no cliente e novas chamadas solicitando explicações técnicas.
               </p>
-            </div>
+            </motion.div>
 
             {/* Depois block */}
-            <div className="bg-[#0f111a]/80 backdrop-blur-xl border border-emerald-500/10 hover:border-emerald-500/40 rounded-[1.5rem] p-6 flex flex-col justify-between transition-all shadow-2xl hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(16,185,129,0.15)] relative overflow-hidden">
+            <motion.div 
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="bg-[#0f111a]/80 backdrop-blur-xl border border-emerald-500/10 hover:border-emerald-500/40 rounded-[1.5rem] p-6 flex flex-col justify-between transition-all shadow-2xl hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(16,185,129,0.15)] relative overflow-hidden"
+            >
               <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent pointer-events-none rounded-[1.5rem]" />
               <div className="relative">
                 <div className="text-[10px] font-mono uppercase tracking-widest text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20 inline-block mb-6 shadow-[0_0_15px_rgba(16,185,129,0.2)]">
@@ -565,7 +671,7 @@ export default function App() {
               <p className="text-[12px] text-emerald-400/90 mt-6 leading-normal relative z-10">
                 Comunicação com alta empatia, dados de andamento precisos do tribunal e contextualização clara sobre quem é o advogado encarregado.
               </p>
-            </div>
+            </motion.div>
 
           </div>
 
@@ -576,7 +682,13 @@ export default function App() {
       <section className="py-16 sm:py-24 border-b border-white/5 bg-slate-900/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           
-          <div className="max-w-xl mx-auto mb-16">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6 }}
+            className="max-w-xl mx-auto mb-16"
+          >
             <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-juris-300 font-bold block mb-4">
               Segurança profissional
             </span>
@@ -586,35 +698,53 @@ export default function App() {
             <p className="text-xs sm:text-sm text-slate-400 leading-relaxed border-b border-white/5 pb-6">
               Privacidade estrita alinhada aos preceitos éticos da OAB de sigilo das comunicações profissionais.
             </p>
-          </div>
+          </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto text-left">
-            <div className="bg-[#0f111a]/80 backdrop-blur-xl border border-white/5 hover:border-juris-500/30 rounded-2xl p-6 transition-all shadow-2xl group hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(99,102,241,0.1)] relative overflow-hidden flex flex-col">
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="bg-[#0f111a]/80 backdrop-blur-xl border border-white/5 hover:border-juris-500/30 rounded-2xl p-6 transition-all shadow-2xl group hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(99,102,241,0.1)] relative overflow-hidden flex flex-col"
+            >
               <div className="absolute inset-0 bg-gradient-to-br from-juris-500/5 to-transparent pointer-events-none rounded-2xl" />
               <div className="w-10 h-10 bg-juris-500/10 rounded-lg border border-juris-500/20 flex items-center justify-center mb-4 text-juris-400 relative z-10">
                 <Lock className="w-5 h-5" />
               </div>
               <h3 className="font-bold text-slate-200 text-sm mb-2 relative z-10">Criptografia em Repouso</h3>
               <p className="text-xs text-slate-400 leading-relaxed relative z-10">Sua caixa de entrada, tokens de acesso Oauth e dados de andamento protegidos sob chave isolada por cliente.</p>
-            </div>
+            </motion.div>
             
-            <div className="bg-[#0f111a]/80 backdrop-blur-xl border border-white/5 hover:border-juris-500/30 rounded-2xl p-6 transition-all shadow-2xl group hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(99,102,241,0.1)] relative overflow-hidden flex flex-col">
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="bg-[#0f111a]/80 backdrop-blur-xl border border-white/5 hover:border-juris-500/30 rounded-2xl p-6 transition-all shadow-2xl group hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(99,102,241,0.1)] relative overflow-hidden flex flex-col"
+            >
               <div className="absolute inset-0 bg-gradient-to-br from-juris-500/5 to-transparent pointer-events-none rounded-2xl" />
               <div className="w-10 h-10 bg-juris-500/10 rounded-lg border border-juris-500/20 flex items-center justify-center mb-4 text-juris-400 relative z-10">
                 <ShieldCheck className="w-5 h-5" />
               </div>
               <h3 className="font-bold text-slate-200 text-sm mb-2 relative z-10">Mapeamento de Acesso</h3>
               <p className="text-xs text-slate-400 leading-relaxed relative z-10">Audite exatamente qual decisão a IA tomou por meio do log consolidado de auditoria de cada e-mail triado.</p>
-            </div>
+            </motion.div>
             
-            <div className="bg-[#0f111a]/80 backdrop-blur-xl border border-white/5 hover:border-juris-500/30 rounded-2xl p-6 transition-all shadow-2xl group hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(99,102,241,0.1)] relative overflow-hidden flex flex-col">
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="bg-[#0f111a]/80 backdrop-blur-xl border border-white/5 hover:border-juris-500/30 rounded-2xl p-6 transition-all shadow-2xl group hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(99,102,241,0.1)] relative overflow-hidden flex flex-col"
+            >
               <div className="absolute inset-0 bg-gradient-to-br from-juris-500/5 to-transparent pointer-events-none rounded-2xl" />
               <div className="w-10 h-10 bg-juris-500/10 rounded-lg border border-juris-500/20 flex items-center justify-center mb-4 text-juris-400 relative z-10">
                 <Trash2 className="w-5 h-5" />
               </div>
               <h3 className="font-bold text-slate-200 text-sm mb-2 relative z-10">Exclusão Contratual</h3>
               <p className="text-xs text-slate-400 leading-relaxed relative z-10">Seus dados são apagados definitivamente no momento do cancelamento da assinatura anual ou mensal.</p>
-            </div>
+            </motion.div>
           </div>
 
         </div>
@@ -627,7 +757,13 @@ export default function App() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-start">
             
             {/* Left description column */}
-            <div className="lg:col-span-6 flex flex-col text-left">
+            <motion.div 
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6 }}
+              className="lg:col-span-6 flex flex-col text-left"
+            >
               <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-juris-300 font-bold block mb-4">
                 Inbox Corporativa
               </span>
@@ -665,10 +801,16 @@ export default function App() {
                   Para advogados, fundadores de bancas trabalhistas, defensores e gerentes jurídicos internos lidando com mais de 30 processos/mês procurando aumentar a margem de faturamento.
                 </p>
               </div>
-            </div>
+            </motion.div>
 
             {/* Right form card */}
-            <div className="lg:col-span-6 w-full max-w-md mx-auto">
+            <motion.div 
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="lg:col-span-6 w-full max-w-md mx-auto"
+            >
               <div className="bg-slate-900 border border-white/10 rounded-2xl overflow-hidden shadow-2xl relative">
                 <div className="h-1 bg-gradient-to-r from-juris-500 to-juris-700"></div>
                 <div className="p-6 sm:p-8 text-left">
@@ -780,7 +922,7 @@ export default function App() {
 
                 </div>
               </div>
-            </div>
+            </motion.div>
 
           </div>
         </div>
