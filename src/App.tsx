@@ -477,18 +477,18 @@ export default function App() {
 
           <div className="flex flex-wrap gap-3 justify-center max-w-4xl mx-auto mb-12 select-none">
             
-            <div className="bg-[#0f111a]/80 backdrop-blur-xl border border-white/5 shadow-2xl px-4 py-3.5 rounded-xl text-xs font-semibold text-slate-300 flex items-center gap-2.5 transition-all hover:border-white/10">
-              <img src="/logogmail.png" alt="Gmail" className="w-5 h-5 object-contain" />
+            <div className="bg-[#0f111a]/80 backdrop-blur-xl border border-white/5 shadow-2xl px-4 py-3.5 rounded-xl text-xs font-semibold text-slate-300 flex items-center gap-3 transition-all hover:border-white/10">
+              <img src="/logogmail.png" alt="Gmail" className="w-7 h-7 object-contain" />
               <span>Gmail Workspace</span>
             </div>
 
-            <div className="bg-[#0f111a]/80 backdrop-blur-xl border border-white/5 shadow-2xl px-4 py-3.5 rounded-xl text-xs font-semibold text-slate-300 flex items-center gap-2.5 transition-all hover:border-white/10">
-              <img src="/logooutlook.png" alt="Outlook" className="w-5 h-5 object-contain mix-blend-screen" />
+            <div className="bg-[#0f111a]/80 backdrop-blur-xl border border-white/5 shadow-2xl px-4 py-3.5 rounded-xl text-xs font-semibold text-slate-300 flex items-center gap-3 transition-all hover:border-white/10">
+              <img src="/logooutlook.png" alt="Outlook" className="w-7 h-7 object-contain mix-blend-screen" />
               <span>Microsoft Outlook</span>
             </div>
 
-            <div className="bg-[#0f111a]/80 backdrop-blur-xl border border-white/5 shadow-2xl px-4 py-3.5 rounded-xl text-xs font-semibold text-slate-300 flex items-center gap-2.5 transition-all hover:border-white/10">
-              <img src="/logowhatsap.png" alt="WhatsApp" className="w-5 h-5 object-contain" />
+            <div className="bg-[#0f111a]/80 backdrop-blur-xl border border-white/5 shadow-2xl px-4 py-3.5 rounded-xl text-xs font-semibold text-slate-300 flex items-center gap-3 transition-all hover:border-white/10">
+              <img src="/logowhatsap.png" alt="WhatsApp" className="w-7 h-7 object-contain" />
               <span>WhatsApp Cloud API</span>
             </div>
 
